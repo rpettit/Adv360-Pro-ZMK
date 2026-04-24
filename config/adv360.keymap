@@ -216,8 +216,8 @@
 
       bindings = <
         &mo 3          &none          &none          &none          &none          &none          &none                                                                          &none          &none          &none          &none          &none          &none          &none
-        &kp ESC        &kp J          &kp G          &kp M          &kp P          &kp V          &none                                                                          &equals_morph  &kp SEMI       &dot_morph     &comma_morph   &slash_morph   &gt_morph      &none
-        &kp TAB        &hml LCTRL R   &hml LALT S    &hml_n LGUI N  &hml LSHFT D   &kp W          &none          &none          &none          &none          &none              &kp SQT        &hmr RSHFT A   &hmr RGUI E    &hmr RALT I    &hmr RCTRL H   &rpar_morph    &kp RET
+        &kp ESC        &kp J          &kp G          &kp M          &kp P          &kp V          &none                                                                          &none          &equals_morph  &kp SEMI       &dot_morph     &comma_morph   &slash_morph   &gt_morph
+        &kp TAB        &hml LCTRL R   &hml LALT S    &hml_n LGUI N  &hml LSHFT D   &kp W          &none          &none          &none          &none          &none              &none          &kp SQT        &hmr RSHFT A   &hmr RGUI E    &hmr RALT I    &hmr RCTRL H   &rpar_morph
         &mt LSHFT ESC  &kp X          &kp F          &kp L          &kp C          &kp B                                        &none          &none                                           &minus_morph   &kp U          &kp O          &kp Y          &kp K          &kp LA(LG(LC(T)))
         &caps_word     &none          &none          &none          &none                         &lt 1 T        &bspc_morph    &none          &none          &kp RET    &lt 2 SPACE                            &kp UP         &kp DOWN       &kp LEFT       &kp RIGHT      &none
       >;
@@ -233,8 +233,8 @@
 
       bindings = <
         &trans         &trans         &trans         &trans         &trans         &trans         &trans                                                                         &trans         &trans         &trans         &trans         &trans         &trans         &trans
-        &trans         &trans         &trans         &trans         &trans         &trans         &trans                                                                         &trans         &kp TILDE      &kp PIPE       &kp AMPS       &trans         &trans         &trans
-        &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans              &kp GRAVE      &kp ASTRK      &kp HASH       &kp AT         &kp UNDER      &trans         &trans
+        &trans         &trans         &trans         &trans         &trans         &trans         &trans                                                                         &trans         &trans         &kp TILDE      &kp PIPE       &kp AMPS       &trans         &trans
+        &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans         &trans              &trans         &kp GRAVE      &kp ASTRK      &kp HASH       &kp AT         &kp UNDER      &trans
         &trans         &trans         &trans         &trans         &trans         &trans                                       &trans         &trans                                           &trans         &kp CARET      &kp DLLR       &kp PRCNT      &trans         &trans
         &trans         &trans         &trans         &trans         &trans                        &trans         &trans         &trans         &trans         &trans     &trans                                &trans         &trans         &trans         &trans         &trans
       >;
@@ -249,7 +249,7 @@
       bindings = <
         &trans         &trans         &trans         &trans         &trans         &trans         &trans                                                                         &trans         &trans         &trans         &trans         &trans         &trans         &trans
         &trans         &trans         &kp N7         &kp N8         &kp N9         &trans         &trans                                                                         &trans         &trans         &trans         &trans         &trans         &trans         &trans
-        &trans         &kp LCTRL      &hml LALT N4   &hml LGUI N5   &hml LSHFT N6  &trans         &trans         &trans         &trans         &trans         &trans              &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      &trans         &trans         &trans
+        &trans         &kp LCTRL      &hml LALT N4   &hml LGUI N5   &hml LSHFT N6  &trans         &trans         &trans         &trans         &trans         &trans              &trans         &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      &trans         &trans
         &trans         &trans         &kp N1         &kp N2         &kp N3         &trans                                       &trans         &trans                                           &trans         &trans         &trans         &trans         &trans         &trans
         &trans         &trans         &trans         &trans         &trans                        &kp N0         &trans         &trans         &trans         &trans     &trans                                &trans         &trans         &trans         &trans         &trans
       >;
