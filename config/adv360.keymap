@@ -192,6 +192,7 @@
             key-positions = <22 23>;
             bindings = <&lt_morph>;
         };
+
     };
 
   keymap {
@@ -218,7 +219,7 @@
         &kp ESC        &kp J          &kp G          &kp M          &kp P          &kp V          &none                                                                          &equals_morph  &kp SEMI       &dot_morph     &comma_morph   &slash_morph   &gt_morph      &none
         &kp TAB        &hml LCTRL R   &hml LALT S    &hml_n LGUI N  &hml LSHFT D   &kp W          &none          &none          &none          &none          &none              &kp SQT        &hmr RSHFT A   &hmr RGUI E    &hmr RALT I    &hmr RCTRL H   &rpar_morph    &kp RET
         &mt LSHFT ESC  &kp X          &kp F          &kp L          &kp C          &kp B                                        &none          &none                                           &minus_morph   &kp U          &kp O          &kp Y          &kp K          &kp LA(LG(LC(T)))
-        &caps_word     &none          &none          &none          &none                         &lt 1 T        &none          &none          &none          &kp RET    &lt 2 SPACE                            &kp UP         &kp DOWN       &kp LEFT       &kp RIGHT      &none
+        &caps_word     &none          &none          &none          &none                         &lt 1 T        &bspc_morph    &none          &none          &kp RET    &lt 2 SPACE                            &kp UP         &kp DOWN       &kp LEFT       &kp RIGHT      &none
       >;
     };
 
