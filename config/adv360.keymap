@@ -194,11 +194,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none          &none  &kp Q        &none           &none         &none  &none                                               &none        &none          &none         &none         &none         &none         &none
-&kp ESC        &kp J  &kp G        &kp M           &kp P         &kp V  &none                                               &lt_morph    &equals_morph  &kp SEMI      &dot_morph    &comma_morph  &slash_morph  &gt_morph
-&kp TAB        &kp R  &hml LALT S  &hml_n LCTRL N  &hml LSHFT D  &kp W  &none    &none        &none      &none     &none    &lpar_morph  &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I   &kp H         &rpar_morph
-&mt LSHFT ESC  &kp X  &kp F        &kp L           &kp C         &kp B                        &none      &none                           &minus_morph   &kp U         &kp O         &kp Y         &kp K         &none
-&caps_word     &none  &none        &none           &none                &lt 1 T  &bspc_morph  &none      &kp LGUI  &kp RET  &lt 2 SPACE                 &none         &none         &none         &none         &mo 3
+&none    &none  &kp Q        &none           &none         &none  &none                                                      &none        &none          &none         &none         &none         &none         &none
+&none    &kp J  &kp G        &kp M           &kp P         &kp V  &none                                                      &lt_morph    &equals_morph  &kp SEMI      &dot_morph    &comma_morph  &slash_morph  &gt_morph
+&kp TAB  &kp R  &hml LALT S  &hml_n LCTRL N  &hml LSHFT D  &kp W  &none    &kp ESC      &none             &none     &none    &lpar_morph  &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I   &kp H         &rpar_morph
+&none    &kp X  &kp F        &kp L           &kp C         &kp B                        &caps_word        &hyper                          &minus_morph   &kp U         &kp O         &kp Y         &kp K         &none
+&none    &none  &none        &none           &none                &lt 1 T  &bspc_morph  &kp LEFT_GUI      &kp LGUI  &kp RET  &lt 2 SPACE                 &none         &none         &none         &none         &mo 3
             >;
         };
 
