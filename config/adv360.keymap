@@ -145,7 +145,7 @@
     macros {
         hyper: hyper {
             compatible = "zmk,behavior-macro";
-            #inding-cells = <0>;
+            #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
