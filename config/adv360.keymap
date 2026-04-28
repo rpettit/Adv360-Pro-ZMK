@@ -11,7 +11,7 @@
 // Row 0:  0   1   2   3   4   5   6                              7   8   9  10  11  12  13
 // Row 1: 14  15  16  17  18  19  20                             21  22  23  24  25  26  27
 // Row 2: 28  29  30  31  32  33  34      35  36  |  37  38      39  40  41  42  43  44  45
-// Row 3: 46  47  48  49  50  51                52  |  53              54  55  56  57  58  59
+// Row 3: 46  47  48  49  50  51              52  |  53              54  55  56  57  58  59
 // Row 4: 60  61  62  63  64          65  66  67  |  68  69  70          71  72  73  74  75
 // -----------------------------------------------------------------------
 
@@ -92,12 +92,13 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        // Eats SHIFT on `=` so rolls like `!=` `:=` `?=` stay `=` (not `+`).
         equals_morph: equals_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp EQUAL>, <&kp EQUAL>;
 
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LGUI|MOD_RGUI)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         bspc_morph: bspc_morph {
@@ -144,7 +145,7 @@
     macros {
         hyper: hyper {
             compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+            #inding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
@@ -183,12 +184,12 @@
             // -----------------------------------------------------------------------------------------------------------------------
             // Voyager 4R0X0 mapped onto adv360
             //
-            //  MO3   ---   Q     ---   ---   ---   ---                             ---   ---   ---   ---   ---   ---   ---
-            //  ESC   J     G     M     P     V     ---                             <     =     ;     .     ,     /     >
-            //  TAB   R     S     N     D     W     ---     ---   ---   ---   ---   (     '     A     E     I     H     )
+            //  ---   ---   Q     ---   ---   ---   ---                             ---   ---   ---   ---   ---   ---   ---
+            //  ---   J     G     M     P     V     ---                             <     =     ;     .     ,     /     >
+            //  TAB   R     S     N     D     W     ---     ESC   ---   ---   ---   (     '     A     E     I     H     )
             //              ^a    ^c    ^s                                                      ^s    ^c    ^a
-            //  HYP   X     F     L     C     B                   ---   ---               -     U     O     Y     K     ---
-            //  CW    ---   ---   ---   ---         T/L1  BSPC  ---   LGUI  RET   SPC/L2        ---   ---   ---   ---   ---
+            //  ---   X     F     L     C     B                   CW    HYP               -     U     O     Y     K     ---
+            //  ---   ---   ---   ---   ---         T/L1  BSPC  LGUI  LGUI  RET   SPC/L2        ---   ---   ---   ---   MO3
             //
             // Combos: X+F=Z  G+M=Q
             // -----------------------------------------------------------------------------------------------------------------------
