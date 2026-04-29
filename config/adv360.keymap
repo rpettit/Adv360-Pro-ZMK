@@ -29,7 +29,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <150>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <175>;
             hold-trigger-key-positions = <RIGHT_HAND THUMBS>;
             hold-trigger-on-release;
@@ -40,7 +40,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <150>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <175>;
             hold-trigger-key-positions = <LEFT_HAND THUMBS>;
             hold-trigger-on-release;
@@ -53,7 +53,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <150>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <175>;
             hold-trigger-key-positions = <RIGHT_HAND THUMBS 28 29 33>;
             hold-trigger-on-release;
