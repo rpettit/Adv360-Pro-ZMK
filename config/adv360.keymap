@@ -196,11 +196,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none    &none  &none        &none         &none         &none  &none                                                                &none        &none          &none         &none         &none         &none         &none
-&none    &kp J  &kp G        &kp M         &kp P         &kp V  &none                                                                &lt_morph    &equals_morph  &kp SEMI      &dot_morph    &comma_morph  &slash_morph  &gt_morph
-&kp TAB  &kp R  &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W  &none    &kp ESC             &none           &none   &none           &lpar_morph  &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I   &kp H         &rpar_morph
-&none    &kp X  &kp F        &kp L         &kp C         &kp B                               &caps_word      &none                                &minus_morph   &kp U         &kp O         &kp Y         &kp K         &none
-&none    &none  &none        &none         &none                &lt 1 T  &mt LGUI BACKSPACE  &hyper          &hyper  &mt RGUI ENTER  &lt 2 SPACE                 &none         &none         &none         &none         &mo 3
+&none    &none  &none        &none         &none         &none  &none                                                                    &none        &none          &none         &none         &none         &none         &none
+&none    &kp J  &kp G        &kp M         &kp P         &kp V  &lt_morph                                                                &gt_morph    &equals_morph  &kp SEMI      &dot_morph    &comma_morph  &slash_morph  &none
+&kp TAB  &kp R  &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W  &lpar_morph  &kp ESC             &none           &none   &none           &rpar_morph  &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I   &kp H         &none
+&none    &kp X  &kp F        &kp L         &kp C         &kp B                                   &caps_word      &none                                &minus_morph   &kp U         &kp O         &kp Y         &kp K         &none
+&none    &none  &none        &none         &none                &lt 1 T      &mt LGUI BACKSPACE  &hyper          &hyper  &mt RGUI ENTER  &lt 2 SPACE                 &none         &none         &none         &none         &mo 3
             >;
         };
 
