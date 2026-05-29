@@ -182,11 +182,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                              &none        &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                              &none        &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
-&kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &none       &none   &none      &none        &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &none
-&none    &kp X   &kp F        &kp L         &kp C         &kp B                       &none       &none                           &minus_morph   &kp U         &kp O         &kp Y            &kp K             &none
-&none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T  &bspc_del  &hyper      &hyper  &kp ENTER  &lt 2 SPACE                 &kp UP        &kp DOWN      &none            &none             &mo 3
+&none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                               &none        &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &kp LBRC                                            &kp RBRC     &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
+&kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &kp LPAR  &kp ESC    &none       &none   &none      &kp RPAR     &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &none
+&none    &kp X   &kp F        &kp L         &kp C         &kp B                        &none       &none                           &minus_morph   &kp U         &kp O         &kp Y            &kp K             &none
+&none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T   &bspc_del  &hyper      &hyper  &kp ENTER  &lt 2 SPACE                 &kp UP        &kp DOWN      &none            &none             &mo 3
             >;
         };
 
@@ -199,11 +199,11 @@
             //    ^  $  %        (row 3)
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &trans       &trans       &trans           &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &kp TILDE    &kp PIPE     &kp AMPS         &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp GRAVE  &kp ASTRK    &kp HASH     &kp AT           &kp UNDER        &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans     &kp CARET    &kp DLLR     &kp PRCNT        &trans           &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans             &lpar_curly  &rpar_curly  &lbracket_angle  &rbracket_angle  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &trans           &trans           &trans     &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &kp TILDE        &kp PIPE         &kp AMPS   &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp GRAVE  &kp ASTRK        &kp HASH         &kp AT     &kp UNDER  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans     &kp CARET        &kp DLLR         &kp PRCNT  &trans     &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans             &lbracket_angle  &rbracket_angle  &trans     &trans     &trans
             >;
         };
 
