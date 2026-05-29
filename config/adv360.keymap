@@ -23,7 +23,7 @@
 / {
     behaviors {
         #include "macros.dtsi"
-      #include "version.dtsi"
+        #include "version.dtsi"
 
         hml: hml {
             compatible = "zmk,behavior-hold-tap";
@@ -47,20 +47,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // N/GUI variant: also triggers hold for TAB(28), R(29), W(33) on same hand
-
-        hml_n: hml_n {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <250>;
-            quick-tap-ms = <175>;
-            hold-trigger-key-positions = <RIGHT_HAND THUMBS 28 29 33>;
-            hold-trigger-on-release;
-            bindings = <&kp>, <&kp>;
-        };
-
-        dot_morph: dot_morph {
+        dot_exclam: dot_exclam {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp DOT>, <&kp EXCL>;
@@ -68,7 +55,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comma_morph: comma_morph {
+        comma_question: comma_question {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp QMARK>;
@@ -76,7 +63,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        slash_morph: slash_morph {
+        slash_backslash: slash_backslash {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp FSLH>, <&kp BSLH>;
@@ -93,7 +80,6 @@
         };
 
         // Eats SHIFT on `=` so rolls like `!=` `:=` `?=` stay `=` (not `+`).
-
         equals_morph: equals_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -102,7 +88,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        bspc_morph: bspc_morph {
+        bspc_del: bspc_del {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp BSPC>, <&kp DEL>;
@@ -110,7 +96,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lpar_morph: lpar_morph {
+        lpar_curly: lpar_curly {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LPAR>, <&kp LBRC>;
@@ -118,7 +104,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rpar_morph: rpar_morph {
+        rpar_curly: rpar_curly {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RPAR>, <&kp RBRC>;
@@ -126,18 +112,18 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lt_morph: lt_morph {
+        lbracket_angle: lbracket_angle {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LT>, <&kp LBKT>;
+            bindings = <&kp LBKT>, <&kp LT>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        gt_morph: gt_morph {
+        rbracket_angle: rbracket_angle {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp GT>, <&kp RBKT>;
+            bindings = <&kp RBKT>, <&kp GT>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -183,24 +169,23 @@
             display-name = "Base";
 
             // -----------------------------------------------------------------------------------------------------------------------
-            // Voyager 4R0X0 mapped onto adv360
             //
-            //  ---   ---   Q     ---   ---   ---   ---                             ---   ---   ---   ---   ---   ---   ---
-            //  ---   J     G     M     P     V     ---                             <     =     ;     .     ,     /     >
-            //  TAB   R     S     N     D     W     ---     ESC   ---   ---   ---   (     '     A     E     I     H     )
-            //              ^a    ^c    ^s                                                      ^s    ^c    ^a
-            //  ---   X     F     L     C     B                   CW    HYP               -     U     O     Y     K     ---
-            //  ---   ---   ---   ---   ---         T/L1  BSPC  LGUI  LGUI  RET   SPC/L2        ---   ---   ---   ---   MO3
+            //  ---   1     2       3        4        5     ---                         ---        6     7     8     9     0     ---
+            //  ---   J     G       M        P        V     [<                          ]>         =     ;     .     ,     /     ---
+            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     ({    ESC   ---   ---  ---   })         '     A/SHFT E/CTRL I/ALT H     ---
+            //              ALT     CTRL     SHFT                                                        SHFT   CTRL   ALT
+            //  ---   X     F       L        C        B                 CW    ---                    -   U      O      Y     K     ---
+            //  ---   ---   ---     ---      ---            T/L1  BSPC/GUI HYP  HYP  RET/GUI SPC/L2      ---    ---    ---   ---   MO3
             //
             // Combos: X+F=Z  G+M=Q
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none    &none  &none        &none         &none         &none  &none                                                                    &none        &none          &none         &none         &none         &none         &none
-&none    &kp J  &kp G        &kp M         &kp P         &kp V  &lt_morph                                                                &gt_morph    &equals_morph  &kp SEMI      &dot_morph    &comma_morph  &slash_morph  &none
-&kp TAB  &kp R  &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W  &lpar_morph  &kp ESC             &none           &none   &none           &rpar_morph  &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I   &kp H         &none
-&none    &kp X  &kp F        &kp L         &kp C         &kp B                                   &caps_word      &none                                &minus_morph   &kp U         &kp O         &kp Y         &kp K         &none
-&none    &none  &none        &none         &none                &lt 1 T      &mt LGUI BACKSPACE  &hyper          &hyper  &mt RGUI ENTER  &lt 2 SPACE                 &none         &none         &none         &none         &mo 3
+&none    &kp N1  &kp N2        &kp N3         &kp N4         &kp N5  &none                                                                    &none            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &none
+&none    &kp J   &kp G         &kp M          &kp P          &kp V   &lbracket_angle                                                        &rbracket_angle  &equals_morph  &kp SEMI      &dot_exclam    &comma_question  &slash_backslash  &none
+&kp TAB  &kp R   &hml LALT S   &hml LCTRL N   &hml LSHFT D   &kp W   &lpar_curly  &kp ESC             &none           &none   &none           &rpar_curly      &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I   &kp H         &none
+&none    &kp X   &kp F         &kp L          &kp C          &kp B                                   &caps_word      &none                                &minus_morph     &kp U         &kp O         &kp Y         &kp K         &none
+&none    &none   &none         &none          &none                  &lt 1 T      &mt LGUI BACKSPACE  &hyper          &hyper  &mt RGUI ENTER  &lt 2 SPACE                 &none         &none         &none         &none         &mo 3
             >;
         };
 
@@ -238,6 +223,7 @@
 
         mod {
             display-name = "Mod";
+
             bindings = <
 &none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans           &none  &none       &none       &none  &none  &none
 &none           &none         &none         &none         &none         &none         &bootloader                                            &bootloader      &none  &none       &none       &none  &none  &none
