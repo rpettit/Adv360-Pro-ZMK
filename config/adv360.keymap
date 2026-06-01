@@ -113,18 +113,18 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lbracket_angle: lbracket_angle {
+        langle_bracket: langle_bracket {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LBKT>, <&kp LT>;
+            bindings = <&kp LT>, <&kp LBKT>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rbracket_angle: rbracket_angle {
+        rangle_bracket: rangle_bracket {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RBKT>, <&kp GT>;
+            bindings = <&kp GT>, <&kp RBKT>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -152,14 +152,14 @@
             timeout-ms = <35>;
             key-positions = <47 48>;
             bindings = <&kp Z>;
-            layers = <0 1>;
+            layers = <0>;
         };
 
         combo_q {
             timeout-ms = <35>;
             key-positions = <16 17>;
             bindings = <&kp Q>;
-            layers = <0 1>;
+            layers = <0>;
         };
     };
 
@@ -172,18 +172,18 @@
             // -----------------------------------------------------------------------------------------------------------------------
             //
             //  ---   1     2       3        4        5     ---                         ---        6     7     8     9     0     ---
-            //  ---   J     G       M        P        V     [<                          ]>         =     ;     .     ,     /     ---
-            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     ({    ESC   ---   ---  ---   })         '     A/SHFT E/CTRL I/ALT H     ---
+            //  ---   J     G       M        P        V     ---                         <[         =     ;     .     ,     /     >] 
+            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     ---   ESC   HYP   HYP  ---   ({         '     A/SHFT E/CTRL I/ALT H     })
             //              ALT     CTRL     SHFT                                                        SHFT   CTRL   ALT
-            //  ---   X     F       L        C        B                 CW    ---                    -   U      O      Y     K     ---
-            //  ---   ---   ---     ---      ---            T/L1  BSPC/GUI HYP  HYP  RET/GUI SPC/L2      ---    ---    ---   ---   MO3
+            //  ---   X     F       L        C        B                 ---   ---                    -   U      O      Y     K     ---
+            //  ---   ---   ---     LEFT     RIGHT          T/L1  BSPC/DEL LGUI RGUI ENTER SPC/L2      UP     DOWN   ---   ---   MO3
             //
             // Combos: X+F=Z  G+M=Q
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
 &none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none            &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &lbracket_angle  &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &rbracket_angle
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &langle_bracket  &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &rangle_bracket
 &kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &hyper        &hyper    &none      &lpar_curly      &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &rpar_curly
 &none    &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                 &minus_morph   &kp U         &kp O         &kp Y            &kp K             &none
 &none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 2 SPACE                     &kp UP        &kp DOWN      &none            &none             &mo 3
