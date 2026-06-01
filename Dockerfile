@@ -11,6 +11,6 @@ RUN west update
 # West Zephyr export
 RUN west zephyr-export
 
-COPY bin/build.sh ./
+COPY bin/build-no-clique.sh ./build.sh
 
 CMD ["./build.sh"]
