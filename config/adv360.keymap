@@ -215,11 +215,11 @@
             // +-  ^  $  %            (row below home, plus shifts to minus)
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans      &trans       &trans     &trans    &trans     &trans      &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &lbkt_lt    &trans       &trans     &trans    &trans     &rbkt_gt    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &lpar_lbrc  &kp GRAVE    &kp ASTRK  &kp HASH  &kp AMPS   &rpar_rbrc  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                      &plus_minus  &kp CARET  &kp DLLR  &kp PRCNT  &trans      &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                   &trans     &trans    &trans     &trans      &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans      &trans       &trans     &trans    &trans      &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &lbkt_lt    &trans       &trans     &trans    &rbkt_gt    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &lpar_lbrc  &kp GRAVE    &kp ASTRK  &kp HASH  &rpar_rbrc  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                      &plus_minus  &kp CARET  &kp DLLR  &kp PRCNT   &trans  &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                   &trans     &trans    &trans      &trans  &trans
             >;
         };
 
