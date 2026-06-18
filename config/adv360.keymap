@@ -194,7 +194,7 @@
 &none    &kp J   &kp G        &kp M         &kp P         &kp V   &kp PIPE                                                 &kp TILDE    &kp SEMI     &equals_morph  &dot_exclam   &comma_question  &slash_backslash  &none
 &kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &kp UNDER  &kp ESC    &hyper        &hyper    &none      &kp AT       &kp SQT      &hmr RSHFT A   &hmr RCTRL E  &hmr RALT I      &kp H             &none
 &none    &kp X   &kp F        &kp L         &kp C         &kp B                         &none         &none                             &minus_plus  &kp U          &kp O         &kp Y            &kp K             &none
-&none    &none   &kp Z        &kp LEFT      &kp RIGHT             &lt 2 T    &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 3 SPACE               &kp DOWN       &kp UP        &none            &none             &mo 3
+&none    &none   &kp Z        &kp LEFT      &kp RIGHT             &lt 1 T    &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 2 SPACE               &kp DOWN       &kp UP        &none            &none             &mo 3
             >;
         };
 
