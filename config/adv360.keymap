@@ -167,11 +167,11 @@
             //    ^  $  %        (row 3)
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans         &trans     &trans     &trans    &trans     &trans     &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &kp LESS_THAN  &trans     &trans     &trans    &trans     &trans     &kp GREATER_THAN
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &kp LBRC       &kp GRAVE  &kp ASTRK  &kp HASH  &kp AMPS   &kp PRCNT  &kp RBRC
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                         &trans     &kp CARET  &kp DLLR  &kp TILDE  &trans     &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                    &trans     &trans    &trans     &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans         &trans     &trans     &trans     &trans     &trans      &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &kp LESS_THAN  &trans     &trans     &trans     &trans     &trans      &kp GREATER_THAN
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &kp LBRC       &kp GRAVE  &kp ASTRK  &kp HASH   &kp CARET  &kp DOLLAR  &kp RBRC
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                         &trans     &kp AMPS   &kp PRCNT  &kp TILDE  &trans      &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                    &trans     &trans     &trans     &trans      &trans
             >;
         };
 
