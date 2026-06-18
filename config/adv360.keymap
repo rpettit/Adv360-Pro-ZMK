@@ -95,18 +95,18 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lbkt_lt: lbkt_lt {
+        lt_lbkt: lt_lbkt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LBKT>, <&kp LESS_THAN>;
+            bindings = <&kp LESS_THAN>, <&kp LBKT>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rbkt_gt: rbkt_gt {
+        gt_rbkt: gt_rbkt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RBKT>, <&kp GREATER_THAN>;
+            bindings = <&kp GREATER_THAN>, <&kp RBKT>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -115,14 +115,6 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp PLUS>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        plus_minus: plus_minus {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp PLUS>, <&kp MINUS>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -210,15 +202,15 @@
             display-name = "Sym";
 
             // Right side: symbols. Left side: transparent.
-            // [<  =  ;  ./!  ,/?  ]> (row above home, brackets shift to angles)
-            // ({  `  *  #  &  })     (home row, parens shift to braces)
-            // +-  ^  $  %            (row below home, plus shifts to minus)
+            // <[  =  ;  ./!  >]  /\  (row above home, angles shift to brackets)
+            // ({  `  *  #  })        (home row, parens shift to braces)
+            // -/+  ^  $  %           (row below home, base minus shifts to plus)
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans      &trans       &trans     &trans    &trans      &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &lbkt_lt    &trans       &trans     &trans    &rbkt_gt    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &lt_lbkt    &trans       &trans     &trans    &gt_rbkt    &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &lpar_lbrc  &kp GRAVE    &kp ASTRK  &kp HASH  &rpar_rbrc  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                      &plus_minus  &kp CARET  &kp DLLR  &kp PRCNT   &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                      &trans       &kp CARET  &kp DLLR  &kp PRCNT   &trans  &trans
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                   &trans     &trans    &trans      &trans  &trans
             >;
         };
