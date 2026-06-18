@@ -71,7 +71,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lpar_lbrc_morph: lpar_lbrc_morph {
+        lpar_lbrc: lpar_lbrc {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LPAR>, <&kp LBRC>;
@@ -79,7 +79,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rpar_rbrc_morph: rpar_rbrc_morph {
+        rpar_rbrc: rpar_rbrc {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RPAR>, <&kp RBRC>;
@@ -87,7 +87,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lbkt_lt_morph: lbkt_lt_morph {
+        lbkt_lt: lbkt_lt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LBKT>, <&kp LESS_THAN>;
@@ -95,7 +95,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rbkt_gt_morph: rbkt_gt_morph {
+        rbkt_gt: rbkt_gt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RBKT>, <&kp GREATER_THAN>;
@@ -200,8 +200,8 @@
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans    &trans     &trans     &trans     &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &lbkt_lt_morph  &kp AMPS   &kp PRCNT  &kp TILDE  &rbkt_gt_morph  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &lpar_lbrc_morph  &kp ASTRK  &kp HASH   &kp GRAVE  &rpar_rbrc_morph  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &lbkt_lt  &kp AMPS   &kp PRCNT  &kp TILDE  &rbkt_gt  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &lpar_lbrc  &kp ASTRK  &kp HASH   &kp GRAVE  &rpar_rbrc  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans    &kp CARET  &kp DLLR   &trans     &trans    &trans
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans            &trans     &trans     &trans     &trans    &trans
             >;
