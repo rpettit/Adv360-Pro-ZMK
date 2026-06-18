@@ -51,6 +51,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp DOT>, <&kp EXCL>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -58,6 +59,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp QMARK>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -65,6 +67,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp FSLH>, <&kp BSLH>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -72,14 +75,17 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp PLUS>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         // Eats SHIFT on `=` so rolls like `!=` `:=` `?=` stay `=` (not `+`).
+
         equals_morph: equals_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp EQUAL>, <&kp EQUAL>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -87,6 +93,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp BSPC>, <&kp DEL>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -147,7 +154,7 @@
 &none    &kp J   &kp G        &kp M         &kp P         &kp V   &kp PIPE                                                &kp LBKT     &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &kp RBKT
 &kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &kp AT    &kp ESC    &hyper        &hyper    &kp UNDER  &kp LPAR     &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &kp RPAR
 &none    &kp X   &kp F        &kp L         &kp C         &kp B                        &none         &none                             &minus_morph   &kp U         &kp O         &kp Y            &kp K             &none
-&none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T   &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 2 SPACE                 &kp DOWN      &kp UP        &none            &none             &mo 3
+&none    &none   &kp Z        &kp LEFT      &kp RIGHT             &lt 1 T   &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 2 SPACE                 &kp DOWN      &kp UP        &none            &none             &mo 3
             >;
         };
 
