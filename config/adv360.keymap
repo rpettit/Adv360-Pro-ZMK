@@ -71,6 +71,14 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        pipe_amp: pipe_amp {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PIPE>, <&kp AMPS>;
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         lpar_lbrc: lpar_lbrc {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -180,7 +188,7 @@
             // -----------------------------------------------------------------------------------------------------------------------
             //
             //  ---   1     2       3        4        5     ---                         ---        6     7     8     9     0     ---
-            //  ---   J     G       M        P        V     |                           ~          =     ;     ./!   ,/?   /\    ---
+            //  ---   J     G       M        P        V     |/&                         ~          =     ;     ./!   ,/?   /\    ---
             //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     _     ESC   HYP   HYP  ---   @          '     A/SHFT E/CTRL I/ALT H     ---
             //              ALT     CTRL     SHFT                                                        SHFT   CTRL   ALT
             //  ---   X     F       L        C        B                 ---   ---                    -/+ U      O      Y     K     ---
@@ -191,7 +199,7 @@
 
             bindings = <
 &none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                    &none        &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &kp PIPE                                                 &kp TILDE    &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &pipe_amp                                                &kp TILDE    &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
 &kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &kp UNDER  &kp ESC    &hyper        &hyper    &none      &kp AT       &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &none
 &none    &kp X   &kp F        &kp L         &kp C         &kp B                         &none         &none                             &minus_plus    &kp U         &kp O         &kp Y            &kp K             &none
 &none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T    &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 2 SPACE                 &kp DOWN      &kp UP        &none            &none             &mo 3
@@ -202,7 +210,7 @@
             display-name = "Sym";
 
             // Right side: symbols. Left side: transparent.
-            // [<  =  ;  .  ,  >]     (row above home, brackets shift to angles)
+            // [<  =  ;  ./!  ,/?  ]> (row above home, brackets shift to angles)
             // ({  `  *  #  &  })     (home row, parens shift to braces)
             // +-  ^  $  %            (row below home, plus shifts to minus)
 
