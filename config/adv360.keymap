@@ -71,6 +71,38 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        lpar_lbrc_morph: lpar_lbrc_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR>, <&kp LBRC>;
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        rpar_rbrc_morph: rpar_rbrc_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RPAR>, <&kp RBRC>;
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        lbkt_lt_morph: lbkt_lt_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT>, <&kp LESS_THAN>;
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        rbkt_gt_morph: rbkt_gt_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RBKT>, <&kp GREATER_THAN>;
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         minus_morph: minus_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -140,8 +172,8 @@
             // -----------------------------------------------------------------------------------------------------------------------
             //
             //  ---   1     2       3        4        5     ---                         ---        6     7     8     9     0     ---
-            //  ---   J     G       M        P        V     ---                         <[         =     ;     .     ,     /     >] 
-            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     ---   ESC   HYP   HYP  ---   ({         '     A/SHFT E/CTRL I/ALT H     })
+            //  ---   J     G       M        P        V     |                           ---        ;     =     .     ,     /     ---
+            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     @     ESC   HYP   HYP  _     ---        '     A/SHFT E/CTRL I/ALT H     ---
             //              ALT     CTRL     SHFT                                                        SHFT   CTRL   ALT
             //  ---   X     F       L        C        B                 ---   ---                    -   U      O      Y     K     ---
             //  ---   ---   ---     LEFT     RIGHT          T/L1  BSPC/DEL LGUI RGUI ENTER SPC/L2      UP     DOWN   ---   ---   MO3
@@ -162,15 +194,15 @@
             display-name = "Sym";
 
             // Right side: symbols. Left side: transparent.
-            // ~  |  &          (row 1, after inner)
-            // `  *  #  @  _    (row 2)
-            //    ^  $  %        (row 3)
+            // [<  &  %  ~  >]        (row above home, brackets shift to angles)
+            // ({  *  #  `  })        (home row, parens shift to braces)
+            // ^   $                  (row below home)
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans    &trans     &trans     &trans     &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &kp LBKT  &kp AMPS   &kp PRCNT  &kp TILDE  &kp RBKT  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp LPAR  &kp ASTRK  &kp HASH   &kp CARET  &kp RPAR  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans    &kp CARET  &kp DLLR   &kp GRAVE  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &lbkt_lt_morph  &kp AMPS   &kp PRCNT  &kp TILDE  &rbkt_gt_morph  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &lpar_lbrc_morph  &kp ASTRK  &kp HASH   &kp GRAVE  &rpar_rbrc_morph  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans    &kp CARET  &kp DLLR   &trans     &trans    &trans
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans            &trans     &trans     &trans     &trans    &trans
             >;
         };
