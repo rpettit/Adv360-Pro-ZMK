@@ -191,7 +191,7 @@
 
             bindings = <
 &none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                    &none        &kp N6       &kp N7         &kp N8        &kp N9           &kp N0            &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &kp PIPE                                                 &none        &kp SEMI     &equals_morph  &dot_exclam   &comma_question  &slash_backslash  &none
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &kp PIPE                                                 &kp TILDE    &kp SEMI     &equals_morph  &dot_exclam   &comma_question  &slash_backslash  &none
 &kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &kp UNDER  &kp ESC    &hyper        &hyper    &none      &kp AT       &kp SQT      &hmr RSHFT A   &hmr RCTRL E  &hmr RALT I      &kp H             &none
 &none    &kp X   &kp F        &kp L         &kp C         &kp B                         &none         &none                             &minus_plus  &kp U          &kp O         &kp Y            &kp K             &none
 &none    &none   &kp Z        &kp LEFT      &kp RIGHT             &lt 2 T    &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 3 SPACE               &kp DOWN       &kp UP        &none            &none             &mo 3
@@ -208,7 +208,7 @@
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans      &trans     &trans    &trans     &trans       &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &lbkt_lt    &trans     &trans    &kp TILDE  &rbkt_gt     &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &lbkt_lt    &trans     &trans    &trans     &rbkt_gt     &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &lpar_lbrc  &kp ASTRK  &kp HASH  &kp GRAVE  &rpar_rbrc   &trans
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans      &kp CARET  &kp DLLR  &kp AMPS   &kp PERCENT  &trans
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans              &trans     &trans    &trans     &trans       &trans
