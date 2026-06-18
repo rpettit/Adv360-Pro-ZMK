@@ -202,9 +202,9 @@
             display-name = "Sym";
 
             // Right side: symbols. Left side: transparent.
-            // ~  [<  =  .  ,  >]     (row above home, brackets shift to angles)
-            // ({  *  #  `  })        (home row, parens shift to braces)
-            // +-  ^  $  &  %         (row below home, plus shifts to minus)
+            // [<  =  ;  .  ,  >]     (row above home, brackets shift to angles)
+            // ({  `  *  #  &  })     (home row, parens shift to braces)
+            // +-  ^  $  %            (row below home, plus shifts to minus)
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans      &trans       &trans     &trans    &trans     &trans      &trans
