@@ -63,10 +63,18 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        bslash_slash: bslash_slash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSLH>, <&kp KP_DIVIDE>;
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
         slash_backslash: slash_backslash {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp BSLH>;
+            bindings = <&kp FSLH>, <&bslash_slash>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -249,6 +257,7 @@
         // - Experimental paren stack: () on Sym, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
+        // - Keep - and / Ctrl+Shift-safe on Sym fallthrough so stacked delimiter chords do not leak into _ or \.
 
         default_layer {
             display-name = "Base";
