@@ -149,6 +149,7 @@
             bindings = <&kp MINUS>, <&kp PLUS>;
 
             // PLUS is LS(EQUAL); keep Shift so Shift+Ctrl still emits + instead of the underlying =.
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -269,11 +270,11 @@
             // -/+  ^  $  %           (row below home, base minus shifts to plus)
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans              &trans     &trans    &trans     &trans              &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans              &trans     &trans    &trans     &trans              &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH  &kp GRAVE  &rpar_rbrc_rbkt_gt  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans              &kp CARET  &kp DLLR  &kp PRCNT  &trans              &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                      &trans     &trans    &trans     &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &trans              &trans     &trans    &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &trans              &trans     &trans    &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp GRAVE  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH  &rpar_rbrc_rbkt_gt  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans     &kp PERCENT         &kp CARET  &kp DLLR  &trans              &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans             &trans              &trans     &trans    &trans              &trans
             >;
         };
 
