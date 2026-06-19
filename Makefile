@@ -1,6 +1,7 @@
 DOCKER := $(shell { command -v podman || command -v docker; })
 TIMESTAMP := $(shell date -u +"%Y%m%d%H%M")
 COMMIT := $(shell git rev-parse --short HEAD 2>/dev/null)
+.DEFAULT_GOAL := all
 ifeq ($(shell uname),Darwin)
 SELINUX1 :=
 SELINUX2 :=
@@ -11,10 +12,11 @@ endif
 
 .PHONY: all left clean_firmware clean_image clean
 
-all:
-	$(shell bin/get_version_local.sh >> /dev/null)
+# Default local build: non-Clique firmware for both halves.
+all: clean_firmware
+	bin/get_version_local.sh >> /dev/null
 	$(DOCKER) build --tag zmk --file Dockerfile .
-	$(DOCKER) run --rm -it --name zmk \
+	$(DOCKER) run --rm --name zmk \
 		-v $(PWD)/firmware:/app/firmware$(SELINUX1) \
 		-v $(PWD)/config:/app/config:ro$(SELINUX2) \
 		-e TIMESTAMP=$(TIMESTAMP) \
@@ -23,10 +25,10 @@ all:
 		zmk
 	git checkout config/version.dtsi
 
-left:
-	$(shell bin/get_version_local.sh >> /dev/null)
+left: clean_firmware
+	bin/get_version_local.sh >> /dev/null
 	$(DOCKER) build --tag zmk --file Dockerfile .
-	$(DOCKER) run --rm -it --name zmk \
+	$(DOCKER) run --rm --name zmk \
 		-v $(PWD)/firmware:/app/firmware$(SELINUX1) \
 		-v $(PWD)/config:/app/config:ro$(SELINUX2) \
 		-e TIMESTAMP=$(TIMESTAMP) \
