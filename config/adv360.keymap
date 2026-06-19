@@ -79,18 +79,50 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lpar_lbrc: lpar_lbrc {
+        lpar_lbkt: lpar_lbkt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LPAR>, <&kp LBRC>;
+            bindings = <&kp LPAR>, <&kp LBKT>;
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        rpar_rbkt: rpar_rbkt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RPAR>, <&kp RBKT>;
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        lbrc_lt: lbrc_lt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LBRC>, <&kp LESS_THAN>;
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        rbrc_gt: rbrc_gt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RBRC>, <&kp GREATER_THAN>;
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        lpar_lbrc_lbkt_lt: lpar_lbrc_lbkt_lt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&lpar_lbkt>, <&lbrc_lt>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rpar_rbrc: rpar_rbrc {
+        rpar_rbrc_rbkt_gt: rpar_rbrc_rbkt_gt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RPAR>, <&kp RBRC>;
+            bindings = <&rpar_rbkt>, <&rbrc_gt>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -139,6 +171,14 @@
     };
 
     macros {
+        macro_th: macro_th {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&kp T>, <&kp H>;
+        };
+
         hyper: hyper {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -169,6 +209,14 @@
             bindings = <&kp Q>;
             layers = <0>;
         };
+
+        // Experimental: keep this short so fast ND rolls do not accidentally emit TH.
+        combo_th {
+            timeout-ms = <25>;
+            key-positions = <31 32>;
+            bindings = <&macro_th>;
+            layers = <0>;
+        };
     };
 
     keymap {
@@ -181,6 +229,7 @@
         // - Keep quote-like keys clustered: ' and " on Base, ` on the same physical key on Sym.
         // - Keep / transparent on Sym so </, />, /*, and */ work without releasing the layer.
         // - Keep angles as the Sym defaults; brackets are shifted because operators/tags/arrows are more common in code.
+        // - Experimental paren stack: () on Sym, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
 
@@ -196,7 +245,7 @@
             //  ---   X     F       L        C        B                 ---   ---                    -/+ U      O      Y     K     ---
             //  ---   ---   ---     LEFT     RIGHT          T/L1  BSPC/DEL LGUI RGUI ENTER SPC/L2      UP     DOWN   ---   ---   MO3
             //
-            // Combos: X+F=Z  G+M=Q
+            // Combos: X+F=Z  G+M=Q  N+D=TH
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
@@ -213,13 +262,13 @@
 
             // Right side: symbols. Left side: transparent.
             // <[  =  ;  ./!  >]  /\  (row above home, angles shift to brackets)
-            // ({  `  *  #  })        (home row, parens shift to braces)
+            // (stack)  `  *  #  )stack (home row: () / Shift={} / Ctrl=[] / Shift+Ctrl=<>)
             // -/+  ^  $  %           (row below home, base minus shifts to plus)
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans      &trans       &trans     &trans    &trans      &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &lt_lbkt    &trans       &trans     &trans    &gt_rbkt    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &lpar_lbrc  &kp GRAVE    &kp ASTRK  &kp HASH  &rpar_rbrc  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &lpar_lbrc_lbkt_lt  &kp GRAVE    &kp ASTRK  &kp HASH  &rpar_rbrc_rbkt_gt  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                      &trans       &kp CARET  &kp DLLR  &kp PRCNT   &trans  &trans
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                   &trans     &trans    &trans      &trans  &trans
             >;
