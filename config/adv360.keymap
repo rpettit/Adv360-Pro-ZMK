@@ -176,7 +176,7 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&kp T>, <&kp H>;
+            bindings = <&kp T &kp H>;
         };
 
         hyper: hyper {
@@ -211,6 +211,7 @@
         };
 
         // Experimental: keep this short so fast ND rolls do not accidentally emit TH.
+
         combo_th {
             timeout-ms = <25>;
             key-positions = <31 32>;
@@ -266,11 +267,11 @@
             // -/+  ^  $  %           (row below home, base minus shifts to plus)
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans      &trans       &trans     &trans    &trans      &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &lt_lbkt    &trans       &trans     &trans    &gt_rbkt    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &lpar_lbrc_lbkt_lt  &kp GRAVE    &kp ASTRK  &kp HASH  &rpar_rbrc_rbkt_gt  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                      &trans       &kp CARET  &kp DLLR  &kp PRCNT   &trans  &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                   &trans     &trans    &trans      &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans              &trans     &trans    &trans     &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans              &trans     &trans    &trans     &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH  &kp GRAVE  &rpar_rbrc_rbkt_gt  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans              &kp CARET  &kp DLLR  &kp PRCNT  &trans              &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                      &trans     &trans    &trans     &trans              &trans
             >;
         };
 
