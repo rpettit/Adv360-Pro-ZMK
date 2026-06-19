@@ -143,15 +143,21 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        plus_minus: plus_minus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PLUS>, <&kp KP_MINUS>;
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
         minus_plus: minus_plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&kp PLUS>;
+            bindings = <&kp MINUS>, <&plus_minus>;
 
-            // PLUS is LS(EQUAL); keep Shift so Shift+Ctrl still emits + instead of the underlying =.
-
+            // Shift gives +; Ctrl+Shift uses keypad minus so leaked Shift cannot turn it into _.
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         // Eats SHIFT on `=` so rolls like `!=` `:=` `?=` stay `=` (not `+`).
@@ -162,6 +168,14 @@
             bindings = <&kp EQUAL>, <&kp EQUAL>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        equals_stack: equals_stack {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL>, <&kp EQUAL>;
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
         };
 
         bspc_del: bspc_del {
@@ -213,11 +227,11 @@
             layers = <0>;
         };
 
-        // Experimental: keep this short so fast ND rolls do not accidentally emit TH.
+        // Experimental: keep this short so fast SN/NS rolls do not accidentally emit TH.
 
         combo_th {
             timeout-ms = <25>;
-            key-positions = <31 32>;
+            key-positions = <30 31>;
             bindings = <&macro_th>;
             layers = <0>;
         };
@@ -232,7 +246,6 @@
         // - Do not add symbols to Sym just because they exist; first check whether Base already has them.
         // - Keep quote-like keys clustered: ' and " on Base, ` on the same physical key on Sym.
         // - Keep / transparent on Sym so </, />, /*, and */ work without releasing the layer.
-        // - Keep angles as the Sym defaults; brackets are shifted because operators/tags/arrows are more common in code.
         // - Experimental paren stack: () on Sym, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
@@ -249,7 +262,7 @@
             //  ---   X     F       L        C        B                 ---   ---                    -/+ U      O      Y     K     ---
             //  ---   ---   ---     LEFT     RIGHT          T/L1  BSPC/DEL LGUI RGUI ENTER SPC/L2      UP     DOWN   ---   ---   MO3
             //
-            // Combos: X+F=Z  G+M=Q  N+D=TH
+            // Combos: X+F=Z  G+M=Q  S+N=TH
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
@@ -265,7 +278,7 @@
             display-name = "Sym";
 
             // Right side: symbols. Left side: transparent.
-            // <[  =  ;  ./!  >]  /\  (row above home, angles shift to brackets)
+            // ~  =  ;/:  ./!  ,/?  /\  (row above home; = masks Ctrl/Shift, others fall through)
             // (stack)  `  *  #  )stack (home row: () / Shift={} / Ctrl=[] / Shift+Ctrl=<>)
             // -/+  ^  $  %           (row below home, base minus shifts to plus)
 
