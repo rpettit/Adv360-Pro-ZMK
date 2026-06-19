@@ -148,7 +148,9 @@
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp PLUS>;
 
+            // PLUS is LS(EQUAL); keep Shift so Shift+Ctrl still emits + instead of the underlying =.
             mods = <(MOD_LSFT|MOD_RSFT)>;
+            keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         // Eats SHIFT on `=` so rolls like `!=` `:=` `?=` stay `=` (not `+`).
