@@ -282,7 +282,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &kp TILDE           &kp UNDER  &pipe_amp  &trans              &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp GRAVE  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH   &rpar_rbrc_rbkt_gt  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans     &kp PERCENT         &kp CARET  &kp DLLR   &trans              &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &kp AT             &trans              &trans     &trans     &trans              &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans             &trans              &trans     &trans     &trans              &trans
             >;
         };
 
@@ -295,7 +295,7 @@
             bindings = <
 &trans  &trans  &trans        &trans         &trans         &trans  &trans                                      &trans  &trans    &trans    &trans  &trans     &trans  &trans
 &trans  &trans  &kp N7        &kp N8         &kp N9         &trans  &trans                                      &trans  &trans    &trans    &trans  &trans     &trans  &trans
-&trans  &trans  &hml LALT N4  &hml LCTRL N5  &hml LSHFT N6  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans  &trans
+&trans  &trans  &hml LALT N4  &hml LCTRL N5  &hml LSHFT N6  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &kp AT  &trans
 &trans  &trans  &kp N1        &kp N2         &kp N3         &trans                  &trans      &trans                  &trans    &trans    &trans  &trans     &trans  &trans
 &trans  &trans  &trans        &trans         &trans                 &kp N0  &trans  &trans      &trans  &trans  &trans            &trans    &trans  &trans     &trans  &trans
             >;
