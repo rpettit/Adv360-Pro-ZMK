@@ -281,8 +281,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &trans              &trans     &trans     &trans              &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &kp TILDE           &kp UNDER  &pipe_amp  &trans              &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp GRAVE  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH   &rpar_rbrc_rbkt_gt  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans     &kp PERCENT         &kp CARET  &kp DLLR   &kp AT              &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans             &trans              &trans     &trans     &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans     &kp PERCENT         &kp CARET  &kp DLLR   &trans              &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &kp AT             &trans              &trans     &trans     &trans              &trans
             >;
         };
 
