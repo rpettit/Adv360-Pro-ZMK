@@ -234,7 +234,7 @@
         compatible = "zmk,keymap";
 
         // Layout invariants:
-        // - Base owns common programming punctuation: |/&, _, @, ~, =, ;/:, ./!, ,/?, /\, -/+.
+        // - Base owns common programming punctuation: |/&, _, ~, =, ;/:, ./!, ,/?, /\, -/+.
         // - Sym is right-hand symbols with transparent fallthrough for useful base keys.
         // - Do not add symbols to Sym just because they exist; first check whether Base already has them.
         // - Keep quote-like keys clustered: ' and " on Base, ` on the same physical key on Sym.
@@ -252,7 +252,7 @@
             //
             //  ---   1     2       3        4        5     ---                         ---        6     7     8     9     0     ---
             //  ---   J     G       M        P        V     |/&                         ~          =     ;/:   ./!   ,/?   /\    ---
-            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     _     ESC   HYP   HYP  ---   @          '/"   A/SHFT E/CTRL I/ALT H     ---
+            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     _     ESC   HYP   HYP  ---   ---        '/"   A/SHFT E/CTRL I/ALT H     ---
             //              ALT     CTRL     SHFT                                                        SHFT   CTRL   ALT
             //  ---   X     F       L        C        B                 ---   ---                    -/+ U      O      Y     K     ---
             //  ---   ---   ---     LEFT     RIGHT          T/L1  BSPC/DEL LGUI RGUI ENTER SPC/L2      UP     DOWN   ---   ---   MO3
