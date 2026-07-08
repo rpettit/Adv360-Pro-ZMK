@@ -149,6 +149,7 @@
             bindings = <&kp MINUS>, <&plus_minus>;
 
             // Shift gives +; Ctrl+Shift uses keypad minus so leaked Shift cannot turn it into _.
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -260,11 +261,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                    &none        &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                    &none        &equals_stack  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
-&kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &hyper          &hyper    &none      &none        &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &none
-&none    &kp X   &kp F        &kp L         &kp C         &kp B                       &caps_word      &none                             &minus_plus    &kp U         &kp O         &kp Y            &kp K             &none
-&none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T  &bspc_del  &kp LGUI        &kp RGUI  &kp ENTER  &lt 2 SPACE                 &kp DOWN      &kp UP        &none            &none             &mo 3
+&none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                   &none        &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                   &none        &equals_stack  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
+&kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &hyper        &hyper    &caps_word  &none        &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &none
+&none    &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                              &minus_plus    &kp U         &kp O         &kp Y            &kp K             &none
+&none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER   &lt 2 SPACE                 &kp DOWN      &kp UP        &none            &none             &mo 3
             >;
         };
 
