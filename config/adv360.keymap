@@ -135,22 +135,6 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lt_lbkt: lt_lbkt {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LESS_THAN>, <&kp LBKT>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        gt_rbkt: gt_rbkt {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp GREATER_THAN>, <&kp RBKT>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
         plus_minus: plus_minus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -168,22 +152,22 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        // Eats SHIFT on `=` so rolls like `!=` `:=` `?=` stay `=` (not `+`).
+        // Shift-only rolls emit plain `=`; Ctrl+Shift uses keypad equal so Shift cannot turn it into `+`.
 
         equals_morph: equals_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp EQUAL>, <&kp EQUAL>;
+            bindings = <&kp EQUAL>, <&kp KP_EQUAL>;
 
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
         };
 
         equals_stack: equals_stack {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp EQUAL>, <&kp EQUAL>;
+            bindings = <&kp EQUAL>, <&equals_morph>;
 
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         bspc_del: bspc_del {
@@ -257,7 +241,8 @@
         // - Experimental paren stack: () on Sym, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
-        // - Keep - and / Ctrl+Shift-safe on Sym fallthrough so stacked delimiter chords do not leak into _ or \.
+        // - Ctrl+Shift morphs are intentional: stacked delimiter chords keep modifiers held while falling through to base punctuation.
+        // - Keep -, /, and = Ctrl+Shift-safe so those rolls do not leak into _, \, or +.
 
         default_layer {
             display-name = "Base";
@@ -276,7 +261,7 @@
 
             bindings = <
 &none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                    &none        &kp N6         &kp N7        &kp N8        &kp N9           &kp N0            &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                    &none        &equals_morph  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                    &none        &equals_stack  &kp SEMI      &dot_exclam   &comma_question  &slash_backslash  &none
 &kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &hyper          &hyper    &none      &none        &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H             &none
 &none    &kp X   &kp F        &kp L         &kp C         &kp B                       &caps_word      &none                             &minus_plus    &kp U         &kp O         &kp Y            &kp K             &none
 &none    &none   &none        &kp LEFT      &kp RIGHT             &lt 1 T  &bspc_del  &kp LGUI        &kp RGUI  &kp ENTER  &lt 2 SPACE                 &kp DOWN      &kp UP        &none            &none             &mo 3
@@ -288,8 +273,8 @@
 
             // Right side: symbols. Left side: transparent.
             // ~  =  ;/:  ./!  ,/?  /\  (row above home; = masks Ctrl/Shift, others fall through)
-            // (stack)  `  *  #  )stack (home row: () / Shift={} / Ctrl=[] / Shift+Ctrl=<>)
-            // -/+  ^  $  %           (row below home, base minus shifts to plus)
+            // @  `  (stack)  *  #  )stack (home row: () / Shift={} / Ctrl=[] / Shift+Ctrl=<>)
+            // -/+  %  ^  $           (row below home, base minus shifts to plus)
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans     &trans              &trans     &trans     &trans              &trans
