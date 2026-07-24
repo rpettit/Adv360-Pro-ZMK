@@ -285,7 +285,7 @@
             bindings = <
 &trans  &trans     &trans    &trans    &trans     &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
 &trans  &trans     &trans    &trans    &trans     &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &kp TILDE           &trans
-&trans  &kp UNDER  &kp PIPE  &kp AMPS  &kp COLON  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
+&trans  &kp UNDER  &hml LALT PIPE  &hml LCTRL AMPS  &hml LSHFT COLON  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
 &trans  &trans     &trans    &trans    &trans     &trans                  &trans      &trans                  &trans             &kp PERCENT         &kp CARET  &kp DLLR      &kp GRAVE           &trans
 &trans  &trans     &trans    &trans    &trans             &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
             >;
