@@ -24,6 +24,7 @@ the keymap remains the source of truth for individual bindings.
 | `+=`, `-=`, `*=`, `/=` |
 | `</`                   |
 | `/*`, `*/`             |
+| `);`                   |
 | `<-`, `->`             |
 | `./`, `/.`             |
 | `~/.`                  |
@@ -37,6 +38,8 @@ the keymap remains the source of truth for individual bindings.
 
 ## Other binding invariants
 
+- A key present on Base must not appear at a different physical position on another layer. Use
+  transparent fallthrough at its Base position.
 - Ctrl-B has a dedicated Base binding and remains available through transparent Sym fallthrough.
 
 ## Handoff invariants
@@ -58,12 +61,12 @@ hold-compatible paths are gains that must be preserved.
 The delimiter stack deliberately leaves Shift and Ctrl held during some sequences. These bindings
 must emit literal punctuation under those modifiers instead of their ordinary shifted forms.
 
-| Key           | Plain | Shift | Shift+Ctrl | Purpose                                                                                                |
-| ------------- | ----: | ----: | ---------: | ------------------------------------------------------------------------------------------------------ |
-| `=`           |   `=` |   `=` |        `=` | Protect `:=`, `!=`, `?=`, `<=`, `>=`, and other equality endings from becoming `+`.                    |
-| `/`           |   `/` |   `\` |        `/` | Retain the normal `/\` pair while keeping angle/slash sequences literal under the full delimiter hold. |
-| Dedicated `-` |   `-` |   `-` |        `-` | Keep minus literal when delimiter modifiers are retained.                                              |
-| Dedicated `+` |   `+` |   `+` |        `+` | Keep plus literal before any closing delimiter.                                                        |
+| Key           | Plain | Shift | Ctrl     | Shift+Ctrl | Purpose                                                                                                |
+| ------------- | ----: | ----: | -------- | ---------: | ------------------------------------------------------------------------------------------------------ |
+| `=`           |   `=` |   `=` | `Ctrl+=` |        `=` | Protect `:=`, `!=`, `?=`, `<=`, `>=`, and other equality endings from becoming `+`.                    |
+| `/`           |   `/` |   `\` | `Ctrl+/` |        `/` | Retain the normal `/\` pair while keeping angle/slash sequences literal under the full delimiter hold. |
+| Dedicated `-` |   `-` |   `-` | `-`      |        `-` | Keep minus literal when delimiter modifiers are retained.                                              |
+| Dedicated `+` |   `+` |   `+` | `+`      |        `+` | Keep plus literal before any closing delimiter.                                                        |
 
 ## Accepted tradeoffs
 
