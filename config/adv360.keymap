@@ -205,32 +205,6 @@
 
             mods = <(MOD_LCTL|MOD_RCTL)>;
         };
-
-        space_tap: space_tap {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp SPACE>, <&space_ctrl_morph>;
-
-            // Preserve Shift+Space and Ctrl+Space; only Shift+Ctrl becomes literal Space.
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        sym_space: sym_space {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&space_tap>;
-        };
-
-        bspc_del: bspc_del {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp BSPC>, <&kp DEL>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
     };
 
     macros {
@@ -331,11 +305,11 @@
             // -/+  %  ^  $           (row below home, base minus shifts to plus)
 
             bindings = <
-&trans  &trans     &trans          &trans           &trans            &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
-&trans  &trans     &trans          &trans           &trans            &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &trans              &trans
-&trans  &kp UNDER  &hml LALT PIPE  &hml LCTRL AMPS  &hml LSHFT COLON  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
-&trans  &trans     &trans          &trans           &trans            &trans                  &trans      &trans                  &kp PRCNT          &kp SEMI            &kp CARET  &kp DLLR      &trans              &trans
-&trans  &trans     &trans          &trans           &trans                    &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
+&trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
+&trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &trans              &trans
+&trans  &kp UNDER  &hml LALT PIPE  &hml LCTRL AMPS  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
+&trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON           &kp CARET  &kp DLLR      &trans              &trans
+&trans  &trans     &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
             >;
         };
 
