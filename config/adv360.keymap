@@ -196,6 +196,34 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        space_ctrl_morph: space_ctrl_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LS(SPACE)>, <&kp SPACE>;
+
+            // Outer Shift morph masks Shift. Add it back unless Ctrl is also held.
+
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        space_tap: space_tap {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE>, <&space_ctrl_morph>;
+
+            // Preserve Shift+Space and Ctrl+Space; only Shift+Ctrl becomes literal Space.
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        sym_space: sym_space {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&space_tap>;
+        };
+
         bspc_del: bspc_del {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
