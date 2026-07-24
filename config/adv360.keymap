@@ -266,11 +266,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                   &none        &kp N6         &kp N7            &kp N8        &kp N9       &kp N0  &none
-&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                   &none        &equals_stack  &kp SEMI          &kp DOT       &kp COMMA    &none   &none
-&kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &hyper        &hyper    &caps_word  &none        &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I  &kp H   &kp RC(B)
-&none    &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                              &minus_plus    &kp U             &kp O         &kp Y        &kp K   &none
-&none    &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER   &lt 2 SPACE                 &slash_backslash  &none         &none        &none   &mo 3
+&none    &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                   &none        &kp N6         &kp N7            &kp N8        &kp N9       &kp N0    &none
+&none    &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                   &none        &equals_stack  &slash_backslash  &kp DOT       &kp COMMA    &kp SEMI  &none
+&kp TAB  &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &hyper        &hyper    &caps_word  &none        &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I  &kp H     &kp RC(B)
+&none    &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                              &minus_plus    &kp U             &kp O         &kp Y        &kp K     &none
+&none    &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER   &lt 2 SPACE                 &none             &none         &none        &none     &mo 3
             >;
         };
 
@@ -283,11 +283,11 @@
             // -/+  %  ^  $           (row below home, base minus shifts to plus)
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans             &kp PIPE            &kp EXCL   &kp QUESTION  &kp AMPS            &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans             &kp PERCENT         &kp CARET  &kp DLLR      &kp TILDE           &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &kp GRAVE  &kp UNDER     &trans              &trans
+&trans  &trans     &trans    &trans    &trans     &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
+&trans  &trans     &trans    &trans    &trans     &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &kp TILDE           &trans
+&trans  &kp UNDER  &kp PIPE  &kp AMPS  &kp COLON  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
+&trans  &trans     &trans    &trans    &trans     &trans                  &trans      &trans                  &trans             &kp PERCENT         &kp CARET  &kp DLLR      &kp GRAVE           &trans
+&trans  &trans     &trans    &trans    &trans             &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
             >;
         };
 
