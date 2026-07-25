@@ -201,10 +201,27 @@
             #binding-cells = <0>;
             bindings = <&kp LS(SPACE)>, <&kp SPACE>;
 
-            // Currently unbound. When wrapped by a Shift morph, this preserves Ctrl+Space but
-            // makes Shift+Ctrl+Space emit literal Space.
+            // Outer Shift morph masks Shift. Add it back unless Ctrl is also held.
 
             mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        space_tap: space_tap {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE>, <&space_ctrl_morph>;
+
+            // Preserve Shift+Space and Ctrl+Space; only Shift+Ctrl becomes literal Space.
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        sym_space: sym_space {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&space_tap>;
         };
 
         bspc_del: bspc_del {
@@ -271,7 +288,7 @@
 
         // Layout invariants:
         // - Base owns =, /\, ./!, ,/?, ~, +, '/", grave, and -.
-        // - Sym's left home row is | & ; _ on S N D W; R remains transparent.
+        // - Sym's left home row is | & ; _ on R S N D; W remains transparent.
         // - Sym promotes !, ?, and " on their Base punctuation keys and adds the delimiter
         //   stacks, * #, and % : ^ $ on the right hand.
         // - Keep Base punctuation transparent on Sym unless the same physical key intentionally
@@ -291,7 +308,7 @@
             // -----------------------------------------------------------------------------------------------------------------------
             //
             //  Left keywell                              Right keywell
-            //  ---   1     2       3        4  5  ---    ---   6       7       8       9       0  ---
+            //  ---   1     2       3        4  5  ---    ---   6       7       8       9       0  L3
             //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  +
             //  TAB   R     S/ALT   N/CTRL   D/SHFT W --- ---   '/"     A/SHFT  E/CTRL  I/ALT   H  -
             //  C-B   X     F       L        C  B               grave   U       O       Y       K  C-B
@@ -305,11 +322,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none       &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none        &kp N6         &kp N7            &kp N8        &kp N9           &kp N0     &none
+&none       &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none        &kp N6         &kp N7            &kp N8        &kp N9           &kp N0     &mo 3
 &caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none        &equals_stack  &slash_backslash  &dot_exclam   &comma_question  &kp TILDE  &safe_plus
 &kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &kp ESC    &none         &none     &kp ESC    &none        &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I      &kp H      &safe_minus
 &kp LC(B)   &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                             &kp GRAVE      &kp U             &kp O         &kp Y            &kp K      &kp RC(B)
-&hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &lt 2 SPACE                 &none             &none         &none            &none      &hyper
+&hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0              &none             &none         &none            &none      &hyper
             >;
         };
 
@@ -321,7 +338,7 @@
             //  Left keywell                              Right keywell
             //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        ·  ·  ·
             //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        !  ?  ·  ·
-            //  ·  ·       |/ALT    &/CTRL    ;/SHFT  _  ·    ·  "        (stack)  *  #  )stack  ·
+            //  ·  |       &/ALT    ;/CTRL    _/SHFT  ·  ·    ·  "        (stack)  *  #  )stack  ·
             //  ·  ·       ·        ·         ·       ·       %  :        ^        $  ·  ·
             //  ·  ·       ·        ·         ·                  ·        ·        ·  ·  ·
             //
@@ -330,7 +347,7 @@
             bindings = <
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &trans              &trans
-&trans  &trans     &hml LALT PIPE  &hml LCTRL AMPS  &hml LSHFT SEMI  &kp UNDER  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
+&trans  &kp PIPE   &hml LALT AMPS  &hml LCTRL SEMI  &hml LSHFT UNDER  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
 &trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON           &kp CARET  &kp DLLR      &trans              &trans
 &trans  &trans     &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
             >;
@@ -354,10 +371,10 @@
         mod {
             display-name = "Mod";
 
-            // Currently unreachable from Base; maintenance bindings remain parked here.
+            // Hold Base's top-right L3 key for these maintenance bindings.
 
             bindings = <
-&none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans           &none  &none       &none       &none  &none  &none
+&none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &none            &none  &none       &none       &none  &none  &trans
 &none           &none         &none         &none         &none         &none         &bootloader                                            &bootloader      &none  &none       &none       &none  &none  &none
 &studio_unlock  &none         &none         &none         &none         &none         &none        &none  &none      &bt BT_CLR  &none       &none            &none  &none       &none       &none  &none  &none
 &none           &none         &none         &none         &none         &none                             &none      &none                                    &none  &none       &none       &none  &none  &none
