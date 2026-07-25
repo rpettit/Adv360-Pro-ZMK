@@ -201,9 +201,18 @@
             #binding-cells = <0>;
             bindings = <&kp LS(SPACE)>, <&kp SPACE>;
 
-            // Outer Shift morph masks Shift. Add it back unless Ctrl is also held.
+            // Currently unbound. When wrapped by a Shift morph, this preserves Ctrl+Space but
+            // makes Shift+Ctrl+Space emit literal Space.
 
             mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        bspc_del: bspc_del {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
+
+            mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
 
@@ -261,10 +270,14 @@
         compatible = "zmk,keymap";
 
         // Layout invariants:
-        // - Base owns common programming punctuation: |/&, _, ~, =, ;/:, ./!, ,/?, /\, -/+.
-        // - Sym is right-hand symbols with transparent fallthrough for useful base keys.
-        // - Do not add symbols to Sym just because they exist; first check whether Base already has them.
-        // - Keep quote-like keys clustered: ' and " on Base, ` on the same physical key on Sym.
+        // - Base owns =, /\, ./!, ,/?, ~, +, '/", grave, and -.
+        // - Sym's left home row is | & ; _ on S N D W; R remains transparent.
+        // - Sym promotes !, ?, and " on their Base punctuation keys and adds the delimiter
+        //   stacks, * #, and % : ^ $ on the right hand.
+        // - Keep Base punctuation transparent on Sym unless the same physical key intentionally
+        //   promotes its shifted partner.
+        // - Keep quote-like keys clustered: ' is on Base and direct " is on Sym at the same
+        //   physical position; grave remains separate on the lower row.
         // - Keep / transparent on Sym so </, />, /*, and */ work without releasing the layer.
         // - Experimental paren stack: () on Sym, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
@@ -277,12 +290,16 @@
 
             // -----------------------------------------------------------------------------------------------------------------------
             //
-            //  ---   1     2       3        4        5     ---                         ---        6     7     8     9     0     ---
-            //  ---   J     G       M        P        V     |/&                         ~          =     ;/:   ./!   ,/?   /\    ---
-            //  TAB   R     S/ALT   N/CTRL   D/SHFT   W     _     ESC   HYP   HYP  ---   ---        '/"   A/SHFT E/CTRL I/ALT H     ---
-            //              ALT     CTRL     SHFT                                                        SHFT   CTRL   ALT
-            //  ---   X     F       L        C        B                 ---   ---                    -/+ U      O      Y     K     ---
-            //  ---   ---   ---     LEFT     RIGHT          T/L1  BSPC/DEL LGUI RGUI ENTER SPC/L2      UP     DOWN   ---   ---   MO3
+            //  Left keywell                              Right keywell
+            //  ---   1     2       3        4  5  ---    ---   6       7       8       9       0  ---
+            //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  +
+            //  TAB   R     S/ALT   N/CTRL   D/SHFT W --- ---   '/"     A/SHFT  E/CTRL  I/ALT   H  -
+            //  C-B   X     F       L        C  B               grave   U       O       Y       K  C-B
+            //  HYP   ---   ---     ---      ---                  ---   ---     ---     ---     HYP
+            //
+            //  Upper center: ESC  --- | ---  ESC
+            //  Inner center:      --- | ---
+            //  Thumbs: T/L1  BSPC/DEL  LGUI | RGUI  ENTER  SPC/L2
             //
             // Combos: X+F=Z  G+M=Q  S+N=TH
             // -----------------------------------------------------------------------------------------------------------------------
@@ -299,15 +316,21 @@
         symbols_layer {
             display-name = "Sym";
 
-            // Right side: symbols. Left side: transparent.
-            // ~  =  ;/:  ./!  ,/?  /\  (row above home; = masks Ctrl/Shift, others fall through)
-            // @  `  (stack)  *  #  )stack (home row: () / Shift={} / Ctrl=[] / Shift+Ctrl=<>)
-            // -/+  %  ^  $           (row below home, base minus shifts to plus)
+            // `·` is transparent to Base. Center and thumb keys are all transparent.
+            //
+            //  Left keywell                              Right keywell
+            //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        ·  ·  ·
+            //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        !  ?  ·  ·
+            //  ·  ·       |/ALT    &/CTRL    ;/SHFT  _  ·    ·  "        (stack)  *  #  )stack  ·
+            //  ·  ·       ·        ·         ·       ·       %  :        ^        $  ·  ·
+            //  ·  ·       ·        ·         ·                  ·        ·        ·  ·  ·
+            //
+            // Delimiter stacks: () plain, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
 
             bindings = <
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &trans              &trans
-&trans  &kp UNDER  &hml LALT PIPE  &hml LCTRL AMPS  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
+&trans  &trans     &hml LALT PIPE  &hml LCTRL AMPS  &hml LSHFT SEMI  &kp UNDER  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
 &trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON           &kp CARET  &kp DLLR      &trans              &trans
 &trans  &trans     &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
             >;
@@ -316,8 +339,8 @@
         num_nav_layer {
             display-name = "Num";
 
-            // Left side: numpad (7-9 / 4-6 with HRMs / 1-3 / 0 on thumb).
-            // Right side: arrow keys on home row.
+            // Left: 7-9 on G/M/P, 4-6 with HRMs on S/N/D, 1-3 on F/L/C, 0 on T.
+            // Right home row: Left/Down/Up/Right/@ on quote/A/E/I/H.
 
             bindings = <
 &trans  &trans  &trans        &trans         &trans         &trans  &trans                                      &trans  &trans    &trans    &trans  &trans     &trans  &trans
@@ -330,6 +353,9 @@
 
         mod {
             display-name = "Mod";
+
+            // Currently unreachable from Base; maintenance bindings remain parked here.
+
             bindings = <
 &none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans           &none  &none       &none       &none  &none  &none
 &none           &none         &none         &none         &none         &none         &bootloader                                            &bootloader      &none  &none       &none       &none  &none  &none

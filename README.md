@@ -7,6 +7,10 @@
 * If you would like to continue using GitHub we recommend using Nick Coutsos’s keymap editor: https://nickcoutsos.github.io/keymap-editor/.
 * If you would prefer to leave GitHub and firmware flashing behind you can perform a one-time firmware update to gain access to Clique. Get started here: https://kinesis-ergo.com/360p-clique-upgrade/.
 
+This repository's current custom layout is defined by `config/adv360.keymap`.
+`config/keymap.json` is legacy editor metadata and does not mirror the live layout. GUI keymap edits
+can also remove custom behavior definitions, so review the resulting diff before building.
+
 Certain ZMK features (e.g. combos) require knowing the exact key positions in the matrix. They can be found in both image and text format [here](assets/key-positions.md)
 
 ## Building the Firmware with GitHub Actions
@@ -78,17 +82,17 @@ Follow the programming instruction on page 8 of the [Quick Start Guide](https://
 
 1. Extract the firmwares from the archive downloaded from the GitHub build job (If using the cloud builder) or the firmware folder (If building locally).
 1. Connect the left side keyboard to USB.
-1. Press Mod+macro1 to put the left side into bootloader mode; it should attach to your computer as a USB drive.
+1. Use the left keyboard's physical reset button to enter bootloader mode; it should attach to your computer as a USB drive.
 1. Copy `left.uf2` to the USB drive and it will disconnect.
 1. Power off both keyboards (by unplugging them and making sure the switches are off).
 1. Turn on the left side keyboard with the switch.
 1. Connect the right side keyboard to USB to power it on.
-1. Press Mod+macro3 to put the right side into bootloader mode to attach it as a USB drive.
+1. Use the right keyboard's physical reset button to enter bootloader mode; it should attach as a USB drive.
 1. Copy `right.uf2` to the mounted drive.
 1. Unplug the right side keyboard and turn it back on.
 1. Enjoy!
 
-> Note: There are also physical reset buttons on both keyboards which can be used to enter and exit the bootloader mode. Their location is described in section 2.7 on page 9 in the [User Manual](https://kinesis-ergo.com/wp-content/uploads/Advantage360-ZMK-KB360-PRO-Users-Manual-v3-10-23.pdf) and use is described in section 5.9 on page 14. 
+> The reset-button locations are described in section 2.7 on page 9 of the [User Manual](https://kinesis-ergo.com/wp-content/uploads/Advantage360-ZMK-KB360-PRO-Users-Manual-v3-10-23.pdf), and their use is described in section 5.9 on page 14.
 
 > Note: Some operating systems wont always treat the drive as ejected after the settings-reset file is flashed or may throw a spurious error, this doesn't mean that the flashing process has failed.
 
@@ -100,7 +104,11 @@ Updating from V2.0 based firmwares to V3.0 based firmwares can be a rather compl
 
 ## Versioning
 
-Starting on 11/15/2023 the Advantage 360 Pro will now automatically record the compilation date, branch and Git commit hash in a macro that can be accessed with Mod+V. This will type out the following string: YYYYMMDD-XXXX-YYYYYY, where XXXX is the first 4 characters of the Git branch and YYYYYY is the Git commit hash. In addition to this the builds compiled by GitHub actions are now timestamped and also record the commit hash in the filename. 
+Builds generate a version macro containing the compilation date, branch, short commit hash, and
+firmware flavor. Its output resembles `YYYYMMDD-BRAN-COMMIT-.` for the non-Clique build and ends in
+`-CLIQUE` for the Clique build. The current custom keymap does not bind that macro; add an
+`&macro_ver` binding if typed version output is needed. Firmware artifacts are still timestamped and
+include the commit hash in their filename.
 
 ## N-Key Rollover
 
@@ -156,4 +164,3 @@ Further support resources can be found on Kinesis.com:
 
 In the event of a hardware issue it may be necessary to open a support ticket directly with Kinesis as opposed to a GitHub issue in this repository.
 * https://kinesis-ergo.com/support/kb360pro/#ticket
-
