@@ -231,6 +231,7 @@
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
     };
 
     macros {
@@ -240,6 +241,14 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings = <&kp T &kp H>;
+        };
+
+        macro_pl: macro_pl {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp P &kp L>;
         };
 
         hyper: hyper {
@@ -270,6 +279,15 @@
             timeout-ms = <35>;
             key-positions = <16 17>;
             bindings = <&kp Q>;
+            layers = <0>;
+        };
+
+        // Experimental: adjacent M+P chord replaces the P-to-L same-finger jump.
+
+        combo_pl {
+            timeout-ms = <25>;
+            key-positions = <17 18>;
+            bindings = <&macro_pl>;
             layers = <0>;
         };
 
@@ -318,7 +336,7 @@
             //  Inner center:      --- | ---
             //  Thumbs: T/L1  BSPC/DEL  LGUI | RGUI  ENTER  SPC/L2
             //
-            // Combos: X+F=Z  G+M=Q  S+N=TH
+            // Combos: X+F=Z  G+M=Q  M+P=PL  S+N=TH
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
