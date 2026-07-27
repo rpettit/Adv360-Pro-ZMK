@@ -84,6 +84,24 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        literal_slash: literal_slash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp KP_DIVIDE>, <&kp KP_DIVIDE>;
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+        };
+
+        angle_slash: angle_slash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&slash_backslash>, <&literal_slash>;
+
+            // Left Alt selects angles and must not leak into a following slash.
+
+            mods = <MOD_LALT>;
+        };
+
         pipe_amp: pipe_amp {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -140,6 +158,42 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        literal_lt: literal_lt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LESS_THAN>, <&kp LESS_THAN>;
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+        };
+
+        literal_gt: literal_gt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp GREATER_THAN>, <&kp GREATER_THAN>;
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+        };
+
+        angle_open: angle_open {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&lpar_lbrc_lbkt_lt>, <&literal_lt>;
+
+            // Left Alt is the single-finger angle selector; Shift+Ctrl remains an alias.
+
+            mods = <MOD_LALT>;
+        };
+
+        angle_close: angle_close {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&rpar_rbrc_rbkt_gt>, <&literal_gt>;
+
+            // Left Alt is the single-finger angle selector; Shift+Ctrl remains an alias.
+
+            mods = <MOD_LALT>;
+        };
+
         plus_minus: plus_minus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -178,6 +232,26 @@
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
         };
 
+        angle_minus: angle_minus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&safe_minus>, <&safe_minus>;
+
+            // Preserve Base Alt shortcuts; mask the angle selector only on Sym.
+
+            mods = <MOD_LALT>;
+        };
+
+        angle_plus: angle_plus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&safe_plus>, <&safe_plus>;
+
+            // Preserve Base Alt shortcuts; mask the angle selector only on Sym.
+
+            mods = <MOD_LALT>;
+        };
+
         // Shift-only rolls emit plain `=`; Ctrl+Shift uses keypad equal so Shift cannot turn it into `+`.
 
         equals_morph: equals_morph {
@@ -194,6 +268,24 @@
             bindings = <&kp EQUAL>, <&equals_morph>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        literal_equal: literal_equal {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL>, <&kp KP_EQUAL>;
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+        };
+
+        angle_equal: angle_equal {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&equals_stack>, <&literal_equal>;
+
+            // Left Alt selects angles and must not leak into a following equals.
+
+            mods = <MOD_LALT>;
         };
 
         space_ctrl_morph: space_ctrl_morph {
@@ -216,12 +308,30 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        literal_space: literal_space {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE>, <&kp SPACE>;
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+        };
+
+        angle_space: angle_space {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&space_tap>, <&literal_space>;
+
+            // Left Alt is the angle selector. Right Alt retains ordinary Alt+Space.
+
+            mods = <MOD_LALT>;
+        };
+
         sym_space: sym_space {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&space_tap>;
+            bindings = <&mo>, <&angle_space>;
         };
 
         bspc_del: bspc_del {
@@ -310,15 +420,16 @@
         // - Sym promotes !, ?, and " on their Base punctuation keys and adds the delimiter
         //   stacks, * #, and % : ^ $ on the right hand.
         // - Keep Base punctuation transparent on Sym unless the same physical key intentionally
-        //   promotes its shifted partner.
+        //   promotes its shifted partner or masks an active delimiter selector.
         // - Keep quote-like keys clustered: ' is on Base and direct " is on Sym at the same
         //   physical position; grave remains separate on the lower row.
         // - Keep / transparent on Sym so </, />, /*, and */ work without releasing the layer.
-        // - Experimental paren stack: () on Sym, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
+        // - Delimiter stack: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
+        //   Shift+Ctrl remains an angle alias during the Alt trial.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
         // - Ctrl+Shift morphs are intentional: stacked delimiter chords keep modifiers held while falling through to base punctuation.
-        // - Keep -, /, and = Ctrl+Shift-safe so those rolls do not leak into _, \, or +.
+        // - Keep -, +, /, =, and Space safe under active delimiter selectors so rolls stay literal.
 
         default_layer {
             display-name = "Base";
@@ -360,12 +471,13 @@
             //  ·  ·       ·        ·         ·       ·       %  :        ^        $  ·  ·
             //  ·  ·       ·        ·         ·                  ·        ·        ·  ·  ·
             //
-            // Delimiter stacks: () plain, {} with Shift, [] with Ctrl, <> with Shift+Ctrl.
+            // Delimiter stacks: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
+            // Shift+Ctrl remains an angle alias. Alt-safe punctuation is explicit on Sym.
 
             bindings = <
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &trans     &trans        &trans              &trans
-&trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans              &kp EXCL   &kp QUESTION  &trans              &trans
-&trans  &kp PIPE   &hml LALT AMPS  &hml LCTRL SEMI  &hml LSHFT UNDER  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &lpar_lbrc_lbkt_lt  &kp ASTRK  &kp HASH      &rpar_rbrc_rbkt_gt  &trans
+&trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &angle_equal       &angle_slash        &kp EXCL   &kp QUESTION  &trans              &angle_plus
+&trans  &kp PIPE   &hml LALT AMPS  &hml LCTRL SEMI  &hml LSHFT UNDER  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &angle_open          &kp ASTRK  &kp HASH      &angle_close          &angle_minus
 &trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON           &kp CARET  &kp DLLR      &trans              &trans
 &trans  &trans     &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans              &trans     &trans        &trans              &trans
             >;
