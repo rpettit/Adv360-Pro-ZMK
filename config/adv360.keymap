@@ -474,11 +474,11 @@
             // Shift+Ctrl remains an angle alias. Alt-safe punctuation is explicit on Sym.
 
             bindings = <
-&trans  &trans    &trans          &trans           &trans            &trans  &trans                                      &trans  &trans             &trans        &trans     &trans        &trans        &trans
-&trans  &trans    &trans          &trans           &trans            &trans  &trans                                      &trans  &angle_equal       &angle_slash  &kp EXCL   &kp QUESTION  &trans        &angle_plus
-&trans  &kp PIPE  &hml LALT AMPS  &hml LCTRL SEMI  &hml LSHFT UNDER  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &angle_open   &kp ASTRK  &kp HASH      &angle_close  &angle_minus
-&trans  &trans    &trans          &trans           &trans            &trans                  &trans      &trans                  &kp PRCNT          &kp COLON     &kp CARET  &kp DLLR      &trans        &trans
-&trans  &trans    &trans          &trans           &trans                    &trans  &trans  &trans      &trans  &trans  &trans                     &trans        &trans     &trans        &trans        &trans
+&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans        &trans     &trans        &trans        &trans
+&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &angle_equal       &angle_slash  &kp EXCL   &kp QUESTION  &trans        &angle_plus
+&trans  &trans  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &angle_open   &kp ASTRK  &kp HASH      &angle_close  &angle_minus
+&trans  &trans  &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON     &kp CARET  &kp DLLR      &kp UNDER     &trans
+&trans  &trans  &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans        &trans     &trans        &trans        &trans
             >;
         };
 
