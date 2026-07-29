@@ -452,9 +452,9 @@
             bindings = <
 &none       &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none           &kp N6         &kp N7            &kp N8        &kp N9           &kp N0     &mo 3
 &caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &slash_backslash  &dot_exclam   &comma_question  &kp TILDE  &safe_plus
-&kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &hyper     &none         &none     &hyper     &none           &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I      &kp H      &safe_minus
-&kp LC(B)   &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &kp GRAVE      &kp U             &kp O         &kp Y            &kp K      &kp RC(B)
-&kp ESC     &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none             &none         &none            &none      &hyper
+&kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I      &kp H      &safe_minus
+&kp ESC     &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &kp GRAVE      &kp U             &kp O         &kp Y            &kp K      &kp RC(B)
+&hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none             &none         &none            &none      &hyper
             >;
         };
 
