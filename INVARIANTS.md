@@ -107,6 +107,123 @@ must emit literal punctuation instead of leaking the active selector.
 | Dedicated `+` |     `+` |           `+` | `+`          |        `+` |             `+` | Keep plus literal before any closing delimiter.                                                        |
 | Space tap     | `Space` | `Shift+Space` | `Ctrl+Space` |    `Space` |         `Space` | Keep trailing space literal; Right Alt remains available for ordinary `Alt+Space`.                     |
 
+## Trainer exercise briefs
+
+These briefs are the authored source for Advantage360-specific Trainer exercises. An LLM consumes
+this section and creates or updates one named exercise file per brief in the Trainer project. Trainer
+does not parse this document at runtime.
+
+- Treat each exercise ID as stable. Rename or remove one only as a deliberate curriculum migration.
+- Preserve the exact practice material and required technique. The live keymap may be inspected to
+  explain the physical route, but it must not silently redefine the exercise.
+- Use ten consecutive repetitions per sequence unless a brief says otherwise. Keep related sequences
+  visually grouped rather than shuffling individual repetitions together.
+- When identical text can be produced by another route, the prompt and hint must explicitly require
+  the selector, hold, chord, or fallthrough named here. Emitted text alone cannot prove the route.
+- Keep all setup, fixtures, evaluation, and exercise-specific progression in the named exercise file.
+  Shared Trainer helpers may provide mechanics, but must not become another curriculum manifest.
+
+### `typing.invariants.delimiter-selectors`
+
+- **Practice:** `()`, `{}`, `[]`, `<>`.
+- **Required technique:** plain parentheses, Shift-selected braces, Ctrl-selected brackets, and
+  Left-Alt-selected angles. Retain the selector through both characters of each pair.
+- **Purpose:** make the preferred delimiter stack fluent without teaching placement as an invariant.
+
+### `typing.invariants.angle-compatibility`
+
+- **Practice:** `<>`.
+- **Required technique:** use the Shift+Ctrl compatibility selector, not Left Alt.
+- **Purpose:** keep the legacy angle route available without giving it equal frequency to the
+  preferred single-finger selector. Use one ten-repetition unit per lesson at most.
+
+### `typing.invariants.equality-endings`
+
+- **Practice:** `:=`, `|=`, `&=`, `!=`, `?=`, `=>`, `>=`, `<=`, `==`.
+- **Required technique:** preserve the initiating hold or roll through the literal `=`. Do not release
+  and reacquire modifiers merely to avoid the protected equals behavior.
+- **Purpose:** preserve the equality family and verify that held selectors do not turn `=` into `+`.
+
+### `typing.invariants.assignment-operators`
+
+- **Practice:** `+=`, `-=`, `*=`, `/=`.
+- **Required technique:** use the dedicated `+` and `-` paths and the accepted `/=` index-finger path.
+- **Purpose:** retain direct assignment rolls without reintroducing Shift/Sym handoffs.
+
+### `typing.invariants.slash-rolls`
+
+- **Practice:** `</`, `/*`, `*/`, `./`, `/.`, `~/.`, `/\`.
+- **Required technique:** keep `/` literal under any active delimiter selector; use shifted slash only
+  for the backslash in `/\`.
+- **Purpose:** preserve path, comment, and slash/backslash families, including the accepted `</`
+  same-finger sequence.
+
+### `typing.invariants.arrows-and-closer`
+
+- **Practice:** `<-`, `->`, `);`.
+- **Required technique:** type each as one uninterrupted roll using the preferred selectors.
+- **Purpose:** protect the arrow directions and the high-frequency closer roll.
+
+### `typing.invariants.grouped-pairs`
+
+- **Practice:** `|&`, `&|`, `*#`, `^$`.
+- **Required technique:** use the adjacent left-home logical operators and the paired Neovim motion
+  keys at their canonical positions.
+- **Purpose:** exercise both directions of the logical pair plus the search-motion and line-anchor
+  groupings.
+
+### `typing.invariants.handoffs`
+
+- **Practice:** `("text")`, `")`, `!(`, `+)`, `(?`, `(?:`, `(?=`, `(?!`, `$?`, `$!`, `#!`, `![`, `:%s`,
+  `!~`.
+- **Required technique:** keep each sequence on its hold-compatible path. Do not bounce between Shift
+  and Sym when the invariant provides a continuous route.
+- **Purpose:** retain the handoff improvements that motivated the symbol-layer design.
+
+### `typing.invariants.angle-continuations`
+
+- **Practice:** `<>`, `</`, `<-`, `->`, `<=`, `>=`, `+>`, and an opening `<` followed by `Space`.
+- **Required technique:** use Left Alt for angles and keep it held through `/`, `=`, `-`, `+`, or
+  trailing Space where the sequence permits. The continuation must remain literal while the selector
+  is active.
+- **Purpose:** exercise the modifier masking around the preferred angle selector rather than only
+  producing isolated `<` and `>` characters.
+
+### `typing.invariants.modifier-proof-closers`
+
+- **Practice:** `-)`, `-]`, `+]`, `-}`, `+}`, `+>`.
+- **Required technique:** retain the active delimiter selector while using the dedicated literal `-`
+  or `+` before the closer.
+- **Purpose:** verify the protected punctuation paths used by the delimiter stack.
+
+### `typing.invariants.modifier-proof-matrix`
+
+- **Practice:** `:=`, `!=`, `?=`, `<=`, `>=`, `/\`, `</`, `-)`, `+]`, `-}`, `+>`, and an opening
+  `<` followed by `Space`.
+- **Required technique:** keep the initiating selector held through `=`, `/`, `-`, `+`, or trailing
+  Space. Use the printable representative for each protected behavior rather than releasing modifiers
+  to obtain the target text.
+- **Purpose:** exercise every printable family in the modifier-proof punctuation matrix. `Ctrl+=`,
+  `Ctrl+/`, `Shift+Space`, `Ctrl+Space`, and ordinary Right-Alt+Space remain host-shortcut verification,
+  not printable Trainer targets.
+
+### `typing.invariants.sym-fallthrough-punctuation`
+
+- **Practice:** `~` and grave (`` ` ``).
+- **Required technique:** keep Sym held and use each punctuation key at its Base physical position.
+  Do not release Sym to obtain the target character.
+- **Purpose:** preserve Base punctuation through transparent Sym fallthrough after excluding the
+  documented shifted-partner promotions and delimiter-selector masks. If the live keymap contains any
+  other override, keep the authored target and expose the divergence during practice.
+
+### `nvim.invariants.sym-ctrl-b-fallthrough`
+
+- **Practice:** move one page toward the top from the bottom of a buffer.
+- **Required technique:** keep Sym held and use either dedicated outer-lower Ctrl-B binding once.
+- **Evaluation:** buffer contents remain unchanged and the cursor lands at least one page above its
+  starting position.
+- **Purpose:** exercise transparent Sym fallthrough for a non-printable binding.
+
 ## Accepted tradeoffs
 
 - `</` and `/=` use index-finger SFBs. Both are comfortable in practice, and `</` is easier than the
