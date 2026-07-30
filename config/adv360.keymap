@@ -217,9 +217,9 @@
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp KP_MINUS>;
 
-            // Suppress delimiter modifiers before emitting the dedicated operator.
+            // Suppress delimiter modifiers, including the left-Alt angle selector.
 
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT)>;
         };
 
         safe_plus: safe_plus {
@@ -227,29 +227,9 @@
             #binding-cells = <0>;
             bindings = <&kp PLUS>, <&kp KP_PLUS>;
 
-            // Suppress delimiter modifiers before emitting the dedicated operator.
+            // Suppress delimiter modifiers, including the left-Alt angle selector.
 
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL)>;
-        };
-
-        angle_minus: angle_minus {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&safe_minus>, <&safe_minus>;
-
-            // Preserve Base Alt shortcuts; mask the angle selector only on Sym.
-
-            mods = <MOD_LALT>;
-        };
-
-        angle_plus: angle_plus {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&safe_plus>, <&safe_plus>;
-
-            // Preserve Base Alt shortcuts; mask the angle selector only on Sym.
-
-            mods = <MOD_LALT>;
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT)>;
         };
 
         // Shift-only rolls emit plain `=`; Ctrl+Shift uses keypad equal so Shift cannot turn it into `+`.
@@ -471,12 +451,12 @@
             //  ·  ·       ·        ·         ·                  ·        ·        ·  ·  ·
             //
             // Delimiter stacks: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
-            // Shift+Ctrl remains an angle alias. Alt-safe punctuation is explicit on Sym.
+            // Shift+Ctrl remains an angle alias. Alt safety is explicit here or handled by Base fallthrough.
 
             bindings = <
 &trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans        &trans     &trans        &trans        &trans
-&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &angle_equal       &angle_slash  &kp EXCL   &kp QUESTION  &trans        &angle_plus
-&trans  &trans  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &angle_open   &kp ASTRK  &kp HASH      &angle_close  &angle_minus
+&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &angle_equal       &angle_slash  &kp EXCL   &kp QUESTION  &trans        &trans
+&trans  &trans  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &angle_open   &kp ASTRK  &kp HASH      &angle_close  &trans
 &trans  &trans  &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON     &kp CARET  &kp DLLR      &kp UNDER     &trans
 &trans  &trans  &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans        &trans     &trans        &trans        &trans
             >;
