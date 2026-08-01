@@ -403,11 +403,11 @@
             // -----------------------------------------------------------------------------------------------------------------------
 
             bindings = <
-&none       &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none           &kp N6         &kp N7            &kp N8        &kp N9           &kp N0     &mo 3
-&caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &safe_slash       &dot_exclam   &comma_question  &kp TILDE  &none
-&kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I      &kp H      &kp ESC
-&kp ESC     &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &minus_plus    &kp U             &kp O         &kp Y            &kp K      &kp RC(B)
-&hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none             &none         &none            &none      &hyper
+&none       &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none           &kp N6         &kp N7        &kp N8        &kp N9           &kp N0     &mo 3
+&caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &safe_slash   &dot_exclam   &comma_question  &kp TILDE  &kp GRAVE
+&kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H      &kp ESC
+&kp LC(B)   &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &minus_plus    &kp U         &kp O         &kp Y            &kp K      &kp RC(B)
+&hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none         &none         &none            &none      &hyper
             >;
         };
 
@@ -427,11 +427,11 @@
             // Shift+Ctrl remains an angle alias. Alt safety is explicit here or handled by Base fallthrough.
 
             bindings = <
-&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans        &trans     &trans        &trans        &trans
-&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans        &kp EXCL   &kp QUESTION  &trans        &trans
+&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans           &trans     &trans        &trans            &trans
+&trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans           &kp EXCL   &kp QUESTION  &trans            &trans
 &trans  &trans  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &delimiter_open  &kp ASTRK  &kp HASH      &delimiter_close  &trans
-&trans  &trans  &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON     &kp CARET  &kp DLLR      &kp UNDER     &trans
-&trans  &trans  &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans        &trans     &trans        &trans        &trans
+&trans  &trans  &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON        &kp CARET  &kp DLLR      &kp UNDER         &trans
+&trans  &trans  &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans           &trans     &trans        &trans            &trans
             >;
         };
 
