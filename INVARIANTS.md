@@ -99,13 +99,12 @@ hold-compatible paths are gains that must be preserved.
 The delimiter stack deliberately leaves selector keys held during some sequences. These bindings
 must emit literal punctuation instead of leaking the active selector.
 
-| Key           | Plain   | Shift         | Ctrl         | Shift+Ctrl | Left Alt on Sym | Purpose                                                                                                |
-| ------------- | ------: | ------------: | ------------ | ---------: | --------------: | ------------------------------------------------------------------------------------------------------ |
-| `=`           |     `=` |           `=` | `Ctrl+=`     |        `=` |             `=` | Protect `:=`, `!=`, `?=`, `<=`, `>=`, and other equality endings from becoming `+`.                    |
-| `/`           |     `/` |           `\` | `Ctrl+/`     |        `/` |             `/` | Retain the normal `/\` pair while keeping angle/slash sequences literal under a delimiter hold.        |
-| Dedicated `-` |     `-` |           `-` | `-`          |        `-` |             `-` | Keep minus literal when delimiter modifiers are retained.                                              |
-| Dedicated `+` |     `+` |           `+` | `+`          |        `+` |             `+` | Keep plus literal before any closing delimiter.                                                        |
-| Space tap     | `Space` | `Shift+Space` | `Ctrl+Space` |    `Space` |         `Space` | Keep trailing space literal; Right Alt remains available for ordinary `Alt+Space`.                     |
+| Key            | Plain   | Shift         | Ctrl         | Shift+Ctrl | Left Alt on Sym      | Purpose                                                                                            |
+| -------------- | ------: | ------------: | ------------ | ---------: | -------------------: | -------------------------------------------------------------------------------------------------- |
+| `=`            |     `=` |           `=` | `Ctrl+=`     |        `=` |                  `=` | Protect `:=`, `!=`, `?=`, `<=`, `>=`, and other equality endings from becoming `+`.                |
+| `/`            |     `/` |           `\` | `Ctrl+/`     |        `/` |                  `/` | Retain the normal `/\` pair while keeping angle/slash sequences literal under a delimiter hold.    |
+| Combined `-/+` |     `-` |           `+` | `Ctrl+-`     |        `-` | `-`; Shift gives `+` | Mask Left Alt without losing Shift's operator selection so `<-`, `->`, and `+>` remain literal.     |
+| Space tap      | `Space` | `Shift+Space` | `Ctrl+Space` |    `Space` |              `Space` | Keep trailing space literal; Right Alt remains available for ordinary `Alt+Space`.                 |
 
 ## Trainer exercise briefs
 
@@ -147,7 +146,8 @@ does not parse this document at runtime.
 ### `typing.invariants.assignment-operators`
 
 - **Practice:** `+=`, `-=`, `*=`, `/=`.
-- **Required technique:** use the dedicated `+` and `-` paths and the accepted `/=` index-finger path.
+- **Required technique:** use plain `-` and Shift-selected `+` on the combined operator key, plus the
+  accepted `/=` index-finger path.
 - **Purpose:** retain direct assignment rolls without reintroducing Shift/Sym handoffs.
 
 ### `typing.invariants.slash-rolls`
@@ -184,22 +184,22 @@ does not parse this document at runtime.
 
 - **Practice:** `<>`, `</`, `<-`, `->`, `<=`, `>=`, `+>`, and an opening `<` followed by `Space`.
 - **Required technique:** use Left Alt for angles and keep it held through `/`, `=`, `-`, `+`, or
-  trailing Space where the sequence permits. The continuation must remain literal while the selector
-  is active.
+  trailing Space where the sequence permits. Use Shift on the combined operator key for `+>` without
+  releasing Left Alt. The continuation must remain literal while the selector is active.
 - **Purpose:** exercise the modifier masking around the preferred angle selector rather than only
   producing isolated `<` and `>` characters.
 
 ### `typing.invariants.modifier-proof-closers`
 
-- **Practice:** `-)`, `-]`, `+]`, `-}`, `+}`, `+>`.
-- **Required technique:** retain the active delimiter selector while using the dedicated literal `-`
-  or `+` before the closer.
-- **Purpose:** verify the protected punctuation paths used by the delimiter stack.
+- **Practice:** `+}`, `+>`.
+- **Required technique:** retain Shift through the combined operator key and brace closer for `+}`;
+  retain Left Alt and Shift through the combined operator key and angle closer for `+>`.
+- **Purpose:** verify Shift-selected plus under the delimiter selectors that can remain held.
 
 ### `typing.invariants.modifier-proof-matrix`
 
-- **Practice:** `:=`, `!=`, `?=`, `<=`, `>=`, `/\`, `</`, `-)`, `+]`, `-}`, `+>`, and an opening
-  `<` followed by `Space`.
+- **Practice:** `:=`, `!=`, `?=`, `<=`, `>=`, `/\`, `</`, `<-`, `->`, `+>`, and an opening `<`
+  followed by `Space`.
 - **Required technique:** keep the initiating selector held through `=`, `/`, `-`, `+`, or trailing
   Space. Use the printable representative for each protected behavior rather than releasing modifiers
   to obtain the target text.
@@ -209,9 +209,9 @@ does not parse this document at runtime.
 
 ### `typing.invariants.sym-fallthrough-punctuation`
 
-- **Practice:** `~` and grave (`` ` ``).
-- **Required technique:** keep Sym held and use each punctuation key at its Base physical position.
-  Do not release Sym to obtain the target character.
+- **Practice:** `~`.
+- **Required technique:** keep Sym held and use the punctuation key at its Base physical position. Do
+  not release Sym to obtain the target character.
 - **Purpose:** preserve Base punctuation through transparent Sym fallthrough after excluding the
   documented shifted-partner promotions and delimiter-selector masks. If the live keymap contains any
   other override, keep the authored target and expose the divergence during practice.
@@ -230,8 +230,8 @@ does not parse this document at runtime.
   former path involving the pinky.
 - `\|` and `&` are adjacent left-home taps rather than a Shift-selected pair.
 - `_` uses the home-index `D` position; the inner-index `W` position remains transparent.
-- `-` and `+` are adjacent dedicated keys rather than a Shift-selected pair.
-- Grave is separate from the quote key so direct Sym `"` can coexist with the delimiter stack.
+- `-` and `+` share a combined key, with Shift selecting `+`. Left Alt is masked for angle
+  continuations; literal minus while a Shift or Ctrl delimiter selector remains held is not preserved.
 - Left `Alt+Space` is reserved for a literal trailing Space after an angle; use Right Alt for an
   ordinary `Alt+Space` shortcut.
 

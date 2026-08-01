@@ -202,7 +202,7 @@
             mods = <(MOD_LCTL|MOD_RCTL)>;
         };
 
-        minus_plus: minus_plus {
+        shift_minus_plus: shift_minus_plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&plus_minus>;
@@ -212,24 +212,14 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        safe_minus: safe_minus {
+        minus_plus: minus_plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&kp KP_MINUS>;
+            bindings = <&shift_minus_plus>, <&shift_minus_plus>;
 
-            // Suppress delimiter modifiers, including the left-Alt angle selector.
+            // Mask the left-Alt angle selector without changing Shift's -/+ selection.
 
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT)>;
-        };
-
-        safe_plus: safe_plus {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp PLUS>, <&kp KP_PLUS>;
-
-            // Suppress delimiter modifiers, including the left-Alt angle selector.
-
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT)>;
+            mods = <MOD_LALT>;
         };
 
         // Shift-only rolls emit plain `=`; Ctrl+Shift uses keypad equal so Shift cannot turn it into `+`.
@@ -376,21 +366,22 @@
         compatible = "zmk,keymap";
 
         // Layout invariants:
-        // - Base owns =, /\, ./!, ,/?, ~, +, '/", grave, and -.
+        // - Base owns =, /\, ./!, ,/?, ~, +, '/", and -.
         // - Sym's left home row is | & ; _ on R S N D; W remains transparent.
         // - Sym promotes !, ?, and " on their Base punctuation keys and adds the delimiter
         //   stacks, * #, and % : ^ $ on the right hand.
         // - Keep Base punctuation transparent on Sym unless the same physical key intentionally
         //   promotes its shifted partner or masks an active delimiter selector.
         // - Keep quote-like keys clustered: ' is on Base and direct " is on Sym at the same
-        //   physical position; grave remains separate on the lower row.
+        //   physical position.
         // - Keep / transparent on Sym so </, />, /*, and */ work without releasing the layer.
         // - Delimiter stack: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
         //   Shift+Ctrl remains an angle alias during the Alt trial.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
         // - Ctrl+Shift morphs are intentional: stacked delimiter chords keep modifiers held while falling through to base punctuation.
-        // - Keep -, +, /, =, and Space safe under active delimiter selectors so rolls stay literal.
+        // - Keep /, =, and Space safe under active delimiter selectors; mask left Alt on the
+        //   combined -/+ key so angle continuations remain literal.
 
         default_layer {
             display-name = "Base";
@@ -399,12 +390,12 @@
             //
             //  Left keywell                              Right keywell
             //  ---   1     2       3        4  5  ---    ---   6       7       8       9       0  L3
-            //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  +
-            //  TAB   R     S/ALT   N/CTRL   D/SHFT W --- ---   '/"     A/SHFT  E/CTRL  I/ALT   H  -
-            //  C-B   X     F       L        C  B               grave   U       O       Y       K  C-B
+            //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  ---
+            //  TAB   R     S/ALT   N/CTRL   D/SHFT W --- ---   '/"     A/SHFT  E/CTRL  I/ALT   H  ESC
+            //  ESC   X     F       L        C  B               -/+     U       O       Y       K  C-B
             //  HYP   ---   ---     ---      ---                  ---   ---     ---     ---     HYP
             //
-            //  Upper center: ESC  --- | ---  ESC
+            //  Upper center: ---  --- | ---  ---
             //  Inner center:      --- | ---
             //  Thumbs: T/L1  BSPC/DEL  LGUI | RGUI  ENTER  SPC/L2
             //
@@ -413,9 +404,9 @@
 
             bindings = <
 &none       &kp N1  &kp N2       &kp N3        &kp N4        &kp N5  &none                                                  &none           &kp N6         &kp N7            &kp N8        &kp N9           &kp N0     &mo 3
-&caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &safe_slash       &dot_exclam   &comma_question  &kp TILDE  &safe_plus
-&kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I      &kp H      &safe_minus
-&kp ESC     &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &kp GRAVE      &kp U             &kp O         &kp Y            &kp K      &kp RC(B)
+&caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &safe_slash       &dot_exclam   &comma_question  &kp TILDE  &none
+&kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A      &hmr RCTRL E  &hmr RALT I      &kp H      &kp ESC
+&kp ESC     &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &minus_plus    &kp U             &kp O         &kp Y            &kp K      &kp RC(B)
 &hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none             &none         &none            &none      &hyper
             >;
         };
