@@ -29,7 +29,7 @@ mnemonic neatness does not outweigh them. Any deliberate exception must name its
 
 | Constraint                                                                                                | Design consequence                                                                                                    |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| The right bottom keywell row is easy to reach and sits inline with the upper thumb-cluster keys.          | It carries `% : ^ $`.                                                                                                 |
+| The right bottom keywell row is easy to reach and sits inline with the upper thumb-cluster keys.          | It carries `: ^ $ _`.                                                                                                 |
 | The inner edge of either keywell is a rough reach.                                                        | Avoid using the extra inner keys unless a binding is particularly infrequent.                                         |
 | The first key immediately beyond the right and left pinkies are usable; the farther outer keys are rough. | Do not move frequent symbols outward merely to improve an abstract grid.                                              |
 | Index-finger same-finger sequences are acceptable when they don't scissor.                                | The current `</` and `/=` paths are acceptable; `</` is preferable to its former pinky-involving path.                |
@@ -41,7 +41,7 @@ mnemonic neatness does not outweigh them. Any deliberate exception must name its
 | `()` | None               | —                      |
 | `{}` | Shift              | —                      |
 | `[]` | Ctrl               | —                      |
-| `<>` | Left Alt           | Shift+Ctrl             |
+| `<>` | Left Alt           | —                      |
 
 Left Alt is the single-finger angle selector. It must be masked while emitting either angle and
 while rolling through the protected punctuation family below. Right Alt remains an ordinary host
@@ -103,7 +103,7 @@ must emit literal punctuation instead of leaking the active selector.
 | -------------- | ------: | ------------: | ------------ | ---------: | -------------------: | -------------------------------------------------------------------------------------------------- |
 | `=`            |     `=` |           `=` | `Ctrl+=`     |        `=` |                  `=` | Protect `:=`, `!=`, `?=`, `<=`, `>=`, and other equality endings from becoming `+`.                |
 | `/`            |     `/` |           `\` | `Ctrl+/`     |        `/` |                  `/` | Retain the normal `/\` pair while keeping angle/slash sequences literal under a delimiter hold.    |
-| Combined `-/+` |     `-` |           `+` | `Ctrl+-`     |        `-` | `-`; Shift gives `+` | Mask Left Alt without losing Shift's operator selection so `<-`, `->`, and `+>` remain literal.     |
+| Combined `-/+` |     `-` |           `+` | `Ctrl+-`     |   `Ctrl++` | `-`; Shift gives `+` | Mask Left Alt without losing Shift's operator selection so `<-`, `->`, and `+>` remain literal.     |
 | Space tap      | `Space` | `Shift+Space` | `Ctrl+Space` |    `Space` |              `Space` | Keep trailing space literal; Right Alt remains available for ordinary `Alt+Space`.                 |
 
 ## Trainer exercise briefs
@@ -128,13 +128,6 @@ does not parse this document at runtime.
 - **Required technique:** plain parentheses, Shift-selected braces, Ctrl-selected brackets, and
   Left-Alt-selected angles. Retain the selector through both characters of each pair.
 - **Purpose:** make the preferred delimiter stack fluent without teaching placement as an invariant.
-
-### `typing.invariants.angle-compatibility`
-
-- **Practice:** `<>`.
-- **Required technique:** use the Shift+Ctrl compatibility selector, not Left Alt.
-- **Purpose:** keep the legacy angle route available without giving it equal frequency to the
-  preferred single-finger selector. Use one ten-repetition unit per lesson at most.
 
 ### `typing.invariants.equality-endings`
 
@@ -209,9 +202,9 @@ does not parse this document at runtime.
 
 ### `typing.invariants.sym-fallthrough-punctuation`
 
-- **Practice:** `~`.
-- **Required technique:** keep Sym held and use the punctuation key at its Base physical position. Do
-  not release Sym to obtain the target character.
+- **Practice:** `~` and grave (`` ` ``).
+- **Required technique:** keep Sym held and use each punctuation key at its Base physical position.
+  Do not release Sym to obtain the target character.
 - **Purpose:** preserve Base punctuation through transparent Sym fallthrough after excluding the
   documented shifted-partner promotions and delimiter-selector masks. If the live keymap contains any
   other override, keep the authored target and expose the divergence during practice.

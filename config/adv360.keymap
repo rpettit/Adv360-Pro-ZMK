@@ -126,34 +126,34 @@
             mods = <(MOD_LCTL|MOD_RCTL)>;
         };
 
-        lbrc_lt: lbrc_lt {
+        literal_lbrc: literal_lbrc {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LBRC>, <&kp LESS_THAN>;
+            bindings = <&kp LBRC>, <&kp LBRC>;
 
             mods = <(MOD_LCTL|MOD_RCTL)>;
         };
 
-        rbrc_gt: rbrc_gt {
+        literal_rbrc: literal_rbrc {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RBRC>, <&kp GREATER_THAN>;
+            bindings = <&kp RBRC>, <&kp RBRC>;
 
             mods = <(MOD_LCTL|MOD_RCTL)>;
         };
 
-        lpar_lbrc_lbkt_lt: lpar_lbrc_lbkt_lt {
+        delimiter_stack_open: delimiter_stack_open {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&lpar_lbkt>, <&lbrc_lt>;
+            bindings = <&lpar_lbkt>, <&literal_lbrc>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        rpar_rbrc_rbkt_gt: rpar_rbrc_rbkt_gt {
+        delimiter_stack_close: delimiter_stack_close {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&rpar_rbkt>, <&rbrc_gt>;
+            bindings = <&rpar_rbkt>, <&literal_rbrc>;
 
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -177,9 +177,9 @@
         delimiter_open: delimiter_open {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&lpar_lbrc_lbkt_lt>, <&literal_lt>;
+            bindings = <&delimiter_stack_open>, <&literal_lt>;
 
-            // Left Alt is the single-finger angle selector; Shift+Ctrl remains an alias.
+            // Left Alt is the angle selector.
 
             mods = <MOD_LALT>;
         };
@@ -187,39 +187,39 @@
         delimiter_close: delimiter_close {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&rpar_rbrc_rbkt_gt>, <&literal_gt>;
+            bindings = <&delimiter_stack_close>, <&literal_gt>;
 
-            // Left Alt is the single-finger angle selector; Shift+Ctrl remains an alias.
+            // Left Alt is the angle selector.
 
             mods = <MOD_LALT>;
         };
 
-        plus_minus: plus_minus {
+        literal_minus: literal_minus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp PLUS>, <&kp KP_MINUS>;
+            bindings = <&kp MINUS>, <&kp KP_MINUS>;
 
-            mods = <(MOD_LCTL|MOD_RCTL)>;
+            mods = <MOD_LALT>;
         };
 
-        shift_minus_plus: shift_minus_plus {
+        literal_plus: literal_plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&plus_minus>;
+            bindings = <&kp PLUS>, <&kp KP_PLUS>;
 
-            // Shift gives +; Ctrl+Shift uses keypad minus so leaked Shift cannot turn it into _.
+            // Shift is already masked by minus_plus; mask the left-Alt angle selector.
 
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            mods = <MOD_LALT>;
         };
 
         minus_plus: minus_plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&shift_minus_plus>, <&shift_minus_plus>;
+            bindings = <&literal_minus>, <&literal_plus>;
 
-            // Mask the left-Alt angle selector without changing Shift's -/+ selection.
+            // Shift selects +; the selected leaf masks left Alt before sending the keycode.
 
-            mods = <MOD_LALT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         // Shift-only rolls emit plain `=`; Ctrl+Shift uses keypad equal so Shift cannot turn it into `+`.
@@ -366,20 +366,18 @@
         compatible = "zmk,keymap";
 
         // Layout invariants:
-        // - Base owns =, /\, ./!, ,/?, ~, +, '/", and -.
-        // - Sym's left home row is | & ; _ on R S N D; W remains transparent.
+        // - Base owns =, /\, ./!, ,/?, ~, +, '/", grave, and -.
+        // - Sym's left home row is % & | ; on R S N D; W remains transparent.
         // - Sym promotes !, ?, and " on their Base punctuation keys and adds the delimiter
-        //   stacks, * #, and % : ^ $ on the right hand.
+        //   stacks, * #, and : ^ $ _ on the right hand.
         // - Keep Base punctuation transparent on Sym unless the same physical key intentionally
         //   promotes its shifted partner or masks an active delimiter selector.
         // - Keep quote-like keys clustered: ' is on Base and direct " is on Sym at the same
-        //   physical position.
+        //   physical position; grave remains separate on the outer upper key.
         // - Keep / transparent on Sym so </, />, /*, and */ work without releasing the layer.
         // - Delimiter stack: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
-        //   Shift+Ctrl remains an angle alias during the Alt trial.
         // - Keep ^/$ together for regex parity, and keep * and # adjacent for nvim search motions.
         // - Keep = as a shift-eating morph on Base/Sym fallthrough so !=, :=, ?=, =>, and >= can roll without producing +.
-        // - Ctrl+Shift morphs are intentional: stacked delimiter chords keep modifiers held while falling through to base punctuation.
         // - Keep /, =, and Space safe under active delimiter selectors; mask left Alt on the
         //   combined -/+ key so angle continuations remain literal.
 
@@ -390,9 +388,9 @@
             //
             //  Left keywell                              Right keywell
             //  ---   1     2       3        4  5  ---    ---   6       7       8       9       0  L3
-            //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  ---
+            //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  grave
             //  TAB   R     S/ALT   N/CTRL   D/SHFT W --- ---   '/"     A/SHFT  E/CTRL  I/ALT   H  ESC
-            //  ESC   X     F       L        C  B               -/+     U       O       Y       K  C-B
+            //  C-B   X     F       L        C  B               -/+     U       O       Y       K  C-B
             //  HYP   ---   ---     ---      ---                  ---   ---     ---     ---     HYP
             //
             //  Upper center: ---  --- | ---  ---
@@ -419,18 +417,18 @@
             //  Left keywell                              Right keywell
             //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        ·  ·  ·
             //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        !  ?  ·  ·
-            //  ·  |       &/ALT    ;/CTRL    _/SHFT  ·  ·    ·  "        (stack)  *  #  )stack  ·
-            //  ·  ·       ·        ·         ·       ·       %  :        ^        $  ·  ·
+            //  ·  %       &/ALT    |/CTRL    ;/SHFT  ·  ·    ·  "        (stack)  *  #  )stack  ·
+            //  ·  ·       ·        ·         ·       ·       ·  :        ^        $  _  ·
             //  ·  ·       ·        ·         ·                  ·        ·        ·  ·  ·
             //
             // Delimiter stacks: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
-            // Shift+Ctrl remains an angle alias. Alt safety is explicit here or handled by Base fallthrough.
+            // Alt safety is explicit here or handled by Base fallthrough.
 
             bindings = <
 &trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans           &trans     &trans        &trans            &trans
 &trans  &trans  &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans           &kp EXCL   &kp QUESTION  &trans            &trans
-&trans  &trans  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &delimiter_open  &kp ASTRK  &kp HASH      &delimiter_close  &trans
-&trans  &trans  &trans          &trans           &trans           &trans                  &trans      &trans                  &kp PRCNT          &kp COLON        &kp CARET  &kp DLLR      &kp UNDER         &trans
+&trans  &kp PRCNT  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &delimiter_open  &kp ASTRK  &kp HASH      &delimiter_close  &trans
+&trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &trans             &kp COLON        &kp CARET  &kp DLLR      &kp UNDER         &trans
 &trans  &trans  &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans           &trans     &trans        &trans            &trans
             >;
         };
