@@ -142,7 +142,7 @@
   Mac_Snip_Tool: Mac_Snip {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
-    bindings = <&kp LC(LG(LS(NUMBER_4)))>;
+    bindings = <&kp LG(LS(NUMBER_4))>;
     display-name = "Mac Screen Snip";
   };
 
