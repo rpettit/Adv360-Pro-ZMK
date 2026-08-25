@@ -52,6 +52,15 @@
             bindings = <&kp>, <&kp>;
         };
 
+        t_lt: t_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            hold-trigger-key-positions = <LEFT_HAND RIGHT_HAND CENTER THUMBS_NO_ENTER>;
+            bindings = <&mo>, <&kp>;
+        };
+
         dot_exclam: dot_exclam {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -405,7 +414,7 @@
 &caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &safe_slash   &dot_exclam   &comma_question  &kp TILDE  &none
 &kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H      &kp GRAVE
 &kp ESC     &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &minus_plus    &kp U         &kp O         &kp Y            &kp K      &kp RC(B)
-&hyper      &none   &none        &none         &none                 &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none         &none         &none            &none      &hyper
+&hyper      &none   &none        &none         &none                 &t_lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none         &none         &none            &none      &hyper
             >;
         };
 
