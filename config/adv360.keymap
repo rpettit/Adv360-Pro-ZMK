@@ -391,7 +391,7 @@
             //  CAPSWORD J  G       M        P  V  ---    ---   =       /\      ./!     ,/?     ~  grave
             //  TAB   R     S/ALT   N/CTRL   D/SHFT W --- ---   '/"     A/SHFT  E/CTRL  I/ALT   H  ESC
             //  C-B   X     F       L        C  B               -/+     U       O       Y       K  C-B
-            //  HYP   ---   ---     ---      SHOT                 ---   ---     ---     ---     HYP
+            //  HYP   ---   ---     ---      SHOT                 LEFT  DOWN    UP      RIGHT   HYP
             //
             //  Upper center: ---  --- | ---  ---
             //  Inner center:      --- | ---
@@ -405,7 +405,7 @@
 &caps_word  &kp J   &kp G        &kp M         &kp P         &kp V   &none                                                  &none           &equals_stack  &safe_slash   &dot_exclam   &comma_question  &kp TILDE  &none
 &kp TAB     &kp R   &hml LALT S  &hml LCTRL N  &hml LSHFT D  &kp W   &none    &none      &none         &none     &none      &none           &kp SQT        &hmr RSHFT A  &hmr RCTRL E  &hmr RALT I      &kp H      &kp GRAVE
 &kp ESC     &kp X   &kp F        &kp L         &kp C         &kp B                       &none         &none                                &minus_plus    &kp U         &kp O         &kp Y            &kp K      &kp RC(B)
-&hyper      &none   &none        &none         &Mac_Snip_Tool        &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &none         &none         &none            &none      &hyper
+&hyper      &none   &none        &none         &Mac_Snip_Tool        &lt 1 T  &bspc_del  &kp LGUI      &kp RGUI  &kp ENTER  &sym_space 2 0                 &kp LEFT      &kp DOWN      &kp UP          &kp RIGHT  &hyper
             >;
         };
 
