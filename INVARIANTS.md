@@ -103,7 +103,7 @@ must emit literal punctuation instead of leaking the active selector.
 | -------------- | ------: | ------------: | ------------ | ---------: | -------------------: | -------------------------------------------------------------------------------------------------- |
 | `=`            |     `=` |           `=` | `Ctrl+=`     |        `=` |                  `=` | Protect `:=`, `!=`, `?=`, `<=`, `>=`, and other equality endings from becoming `+`.                |
 | `/`            |     `/` |           `\` | `Ctrl+/`     |        `/` |                  `/` | Retain the normal `/\` pair while keeping angle/slash sequences literal under a delimiter hold.    |
-| Combined `-/+` |     `-` |           `+` | `Ctrl+-`     |   `Ctrl++` | `-`; Shift gives `+` | Mask Left Alt without losing Shift's operator selection so `<-`, `->`, and `+>` remain literal.     |
+| Combined `-/+` | `-`; Sym gives `+` | `+` | `Ctrl+-` | `Ctrl++` | `-`; Shift gives `+` | Promote an unmodified Sym press to `+` while retaining Base semantics for every held modifier. |
 | Space tap      | `Space` | `Shift+Space` | `Ctrl+Space` |    `Space` |              `Space` | Keep trailing space literal; Right Alt remains available for ordinary `Alt+Space`.                 |
 
 ## Trainer exercise briefs
@@ -139,8 +139,8 @@ does not parse this document at runtime.
 ### `typing.invariants.assignment-operators`
 
 - **Practice:** `+=`, `-=`, `*=`, `/=`.
-- **Required technique:** use plain `-` and Shift-selected `+` on the combined operator key, plus the
-  accepted `/=` index-finger path.
+- **Required technique:** use plain `-` and left-thumb/Sym-selected `+` at the combined operator
+  position, plus the accepted `/=` index-finger path. Shift remains an alternate route to `+`.
 - **Purpose:** retain direct assignment rolls without reintroducing Shift/Sym handoffs.
 
 ### `typing.invariants.slash-rolls`
@@ -223,8 +223,9 @@ does not parse this document at runtime.
   former path involving the pinky.
 - `\|` and `&` are adjacent left-home taps rather than a Shift-selected pair.
 - `_` uses the home-index `D` position; the inner-index `W` position remains transparent.
-- `-` and `+` share a combined key, with Shift selecting `+`. Left Alt is masked for angle
-  continuations; literal minus while a Shift or Ctrl delimiter selector remains held is not preserved.
+- `-` and `+` share a combined position. Shift or the left-thumb Sym hold selects `+`; Left Alt while
+  Sym is held restores literal `-`. Left Alt remains masked for angle continuations; literal minus
+  while a Shift or Ctrl delimiter selector remains held is not preserved.
 - Left `Alt+Space` is reserved for a literal trailing Space after an angle; use Right Alt for an
   ordinary `Alt+Space` shortcut.
 

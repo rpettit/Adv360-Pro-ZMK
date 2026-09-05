@@ -223,6 +223,17 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        sym_plus_minus: sym_plus_minus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PLUS>, <&minus_plus>;
+
+            // Sym promotes an unmodified press to +. Any held modifier keeps Base semantics.
+
+            mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
         // Shift-only rolls emit plain `=`; Ctrl+Shift uses keypad equal so Shift cannot turn it into `+`.
 
         equals_morph: equals_morph {
@@ -369,7 +380,7 @@
         // Layout invariants:
         // - Base owns =, /\, ./!, ,/?, ~, +, '/", grave, and -.
         // - Sym's left home row is % & | ; on R S N D; W remains transparent.
-        // - Sym promotes !, ?, and " on their Base punctuation keys and adds the delimiter
+        // - Sym promotes !, ?, ", and + on their Base punctuation keys and adds the delimiter
         //   stacks, * #, and : ^ $ _ on the right hand.
         // - Keep Base punctuation transparent on Sym unless the same physical key intentionally
         //   promotes its shifted partner or masks an active delimiter selector.
@@ -419,7 +430,7 @@
             //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        ·  ·  ·
             //  ·  ·       ·        ·         ·       ·  ·    ·  ·        ·        !  ?  ·  ·
             //  ·  %       &/ALT    |/CTRL    ;/SHFT  ·  ·    ·  "        (stack)  *  #  )stack  ·
-            //  ·  ·       ·        ·         ·       ·       ·  :        ^        $  _  ·
+            //  ·  ·       ·        ·         ·       ·       +  :        ^        $  _  ·
             //  ·  ·       ·        ·         ·                  ·        ·        ·  ·  ·
             //
             // Delimiter stacks: () plain, {} with Shift, [] with Ctrl, <> with left Alt.
@@ -429,7 +440,7 @@
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans           &trans     &trans        &trans            &trans
 &trans  &trans     &trans          &trans           &trans           &trans  &trans                                      &trans  &trans             &trans           &kp EXCL   &kp QUESTION  &trans            &trans
 &trans  &kp PRCNT  &hml LALT AMPS  &hml LCTRL PIPE  &hml LSHFT SEMI  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp DOUBLE_QUOTES  &delimiter_open  &kp ASTRK  &kp HASH      &delimiter_close  &trans
-&trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &trans             &kp COLON        &kp CARET  &kp DLLR      &kp UNDER         &trans
+&trans  &trans     &trans          &trans           &trans           &trans                  &trans      &trans                  &sym_plus_minus     &kp COLON        &kp CARET  &kp DLLR      &kp UNDER         &trans
 &trans  &trans     &trans          &trans           &trans                   &trans  &trans  &trans      &trans  &trans  &trans                     &trans           &trans     &trans        &trans            &trans
             >;
         };
